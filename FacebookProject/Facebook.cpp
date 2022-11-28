@@ -73,13 +73,13 @@ void Facebook::addDefaultFriends()
 	numOfFriends++;
 	Friend* f2 = new Friend(fname2, lname2, d2);
 	f2->addTwoDefaultStatus();
-	f2->addFriend(f1);
+	f2->addFriend(f1,true);
 	checkSizeFriends();
 	friends[numOfFriends] = f2;
 	numOfFriends++;
 	Friend* f3 = new Friend(fname3, lname3, d3);
 	f3->addTwoDefaultStatus();
-	f3->addFriend(f2);
+	f3->addFriend(f2,true);
 	checkSizeFriends();
 	friends[numOfFriends] = f3;
 	numOfFriends++;

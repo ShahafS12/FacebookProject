@@ -31,14 +31,16 @@ void Friend::addTwoDefaultStatus()
 	numOfStatus++;
 }
 
-void Friend::addFriend(Friend* _friend)
+void Friend::addFriend(Friend* _friend, bool sender)
 {
 	checkSizeFriends();
 	friends[numOfFriends] = _friend;
+	if (sender)
+		_friend->addFriend(this, false);
 	numOfFriends++;
 }
 
-void Friend::removeFriend(Friend* _friend)
+void Friend::removeFriend(Friend* _friend, bool remover)
 {
 	bool foundFriend = false;
 	for (int i = 0; i < numOfFriends; i++)
@@ -55,6 +57,8 @@ void Friend::removeFriend(Friend* _friend)
 			}
 			numOfFriends--;
 		}
+		if (remover)
+			_friend->removeFriend(this, false);
 	}
 	if (foundFriend == false)
 		cout << "User was not in friend list" << endl;

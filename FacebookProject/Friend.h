@@ -25,8 +25,8 @@ private:
 public:
 	Friend(char* _fname, char* _lname, Date _dob);
 	void addStatus();
-	void removeFriend(Friend* _friend);
-	void addFriend(Friend* _friend);
+	void removeFriend(Friend* _friend, bool remover);
+	void addFriend(Friend* _friend,bool sender);
 	void checkSizeStatus();
 	void checkSizeFriends();
 	void PrintFriendStatus();
