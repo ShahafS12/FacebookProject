@@ -13,6 +13,35 @@ void Friend::addStatus() {
 	numOfStatus++;
 }
 
+void Friend::addFriend(Friend* _friend)
+{
+	checkSizeFriends();
+	friends[numOfFriends] = _friend;
+	numOfFriends++;
+}
+
+void Friend::removeFriend(Friend* _friend)
+{
+	bool foundFriend = false;
+	for (int i = 0; i < numOfFriends; i++)
+	{
+		if (_friend == friends[i])
+		{
+			foundFriend = true;
+			if (i == numOfFriends - 1)
+				delete friends[i];
+			else
+			{
+				friends[i] = friends[numOfFriends - 1];
+				delete friends[numOfFriends - 1];
+			}
+			numOfFriends--;
+		}
+	}
+	if (foundFriend == false)
+		cout << "User was not in friend list" << endl;
+}
+
 
 void Friend::checkSizeStatus() {
 	if (this->phyS_status == this->numOfStatus)
@@ -21,10 +50,21 @@ void Friend::checkSizeStatus() {
 		Status** tmp = new Status * [phyS_status];
 		for (int i = 0; i < numOfStatus; i++)
 			tmp[i] = statuses[i];
-
-		//tmp = statuses; // copy constractur ESENIEAL 
 		delete[] statuses;
 		statuses = tmp;
+	}
+}
+
+void Friend::checkSizeFriends()
+{
+	if (this->phyS_friends == this->numOfFriends)
+	{
+		this->phyS_friends *= 2;
+		Friend** tmp = new Friend * [phyS_friends];
+		for (int i = 0; i < numOfFriends; i++)
+			tmp[i] = friends[i];
+		delete[] friends;
+		friends = tmp;
 	}
 }
 
