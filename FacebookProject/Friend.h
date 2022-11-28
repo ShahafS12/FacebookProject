@@ -15,13 +15,18 @@ private:
 	Status** statuses = new Status*;
 	int phyS_status = 1;
 	int numOfStatus = 0;
-	Friend** friends;
+	Friend** friends = new Friend*;
+	int phyS_friends = 1;
+	int numOfFriends = 0;
 	//Pages** pages;
 
 public:
 	Friend(char* _fname, char* _lname, Date _dob);
 	void addStatus();
+	void removeFriend(Friend* _friend);
+	void addFriend(Friend* _friend);
 	void checkSizeStatus();
+	void checkSizeFriends();
 	void PrintFriendStatus();
 };
 
