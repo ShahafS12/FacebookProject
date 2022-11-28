@@ -13,6 +13,24 @@ void Friend::addStatus() {
 	numOfStatus++;
 }
 
+void Friend::addTwoDefaultStatus()
+{
+	char text1[MAX_STATUS];
+	strcpy(text1, fname);
+	strcat(text1, "'s first status");
+	Status* s1 = new Status(text1);
+	checkSizeStatus();
+	statuses[numOfStatus] = s1;
+	numOfStatus++;
+	char text2[MAX_STATUS];
+	strcpy(text2, fname);
+	strcat(text2, "'s second status");
+	Status* s2 = new Status(text2);
+	checkSizeStatus();
+	statuses[numOfStatus] = s2;
+	numOfStatus++;
+}
+
 void Friend::addFriend(Friend* _friend)
 {
 	checkSizeFriends();

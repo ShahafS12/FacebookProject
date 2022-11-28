@@ -10,8 +10,12 @@ public:
 	int numOfPages = 0;
 public:
 	Facebook() {};
+	void addDefaultData();
 	void addUser();
 	void checkSizeFriends();
 	void checkSizePages();
 	void addFanPage();
+private:
+	void addDefaultPages();
+	void addDefaultFriends();
 };

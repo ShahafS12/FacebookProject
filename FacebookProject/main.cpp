@@ -2,14 +2,8 @@
 
 int main() {
 	Facebook f;
-	f.addUser();
-	f.friends[0]->addStatus();
-	f.friends[0]->addStatus();
-	f.friends[0]->addStatus();
-	f.friends[0]->addStatus();
-	f.friends[0]->addStatus();
-
-
+	f.addDefaultData();
 	f.friends[0]->PrintFriendStatus();
+	f.friends[2]->PrintFriendStatus();
 	return 0;
 }

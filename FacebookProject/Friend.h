@@ -1,3 +1,4 @@
+#define _CRT_SECURE_NO_WARNINGS
 #pragma once
 #include <iostream>
 using namespace std;
@@ -6,6 +7,7 @@ using namespace std;
 #include "Status.h"
 
 const int MAX_STATUS = 300;
+const int MAX_NAME = 15;
 
 class Friend {
 private:
@@ -28,5 +30,6 @@ public:
 	void checkSizeStatus();
 	void checkSizeFriends();
 	void PrintFriendStatus();
+	void addTwoDefaultStatus();
 };
 
