@@ -178,7 +178,6 @@ void Facebook::preformAction(int actionCode)
 		cin >> user;
 		friends[user - 1]->PrintFriendStatus();
 	case 6:
-		int page;
 		cout << "Choose a page" << endl;
 		showPages();
 		cin >> page;
