@@ -41,3 +41,8 @@ void Pages::showMyFans() {
 		fans[i]->getFriendName();
 	}
 }
+
+void Pages::getPageName() {
+	// get friend name
+	cout << this->name << endl;
+}

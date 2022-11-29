@@ -85,7 +85,6 @@ void Facebook::addDefaultFriends()
 	numOfFriends++;
 }
 
-
 void Facebook::checkSizePages() {
 	if (this->phyS_pages == this->numOfPages)
 	{
@@ -99,6 +98,7 @@ void Facebook::checkSizePages() {
 		pages = tmp;
 	}
 }
+
 void Facebook::checkSizeFriends() {
 	if (this->phyS_friends == this->numOfFriends)
 	{
@@ -116,6 +116,72 @@ void Facebook::checkSizeFriends() {
 void Facebook::showMembers() {
 	// Print all members in Facebook
 	for (int i = 0; i < numOfFriends; i++) {
+		cout << i+1<<"-";
 		friends[i]->getFriendName();
+	}
+}
+
+void Facebook::showPages() {
+	// Print all pages in Facebook
+	for (int i = 0; i < numOfPages; i++) {
+		cout << i + 1 << "-";
+		pages[i]->getPageName();
+	}
+}
+
+void Facebook::menu()
+{
+	int action;
+	cout << "Welcome to Facebook.\nChoose action" << endl;
+	cout << "1-add new user" << endl;
+	cout << "2-add new fan page" << endl;
+	cout << "3-add new status to a friend" << endl;
+	cout << "4-add new status to a page" << endl;
+	cout << "5-show friend 10 recent statuses" << endl;
+	cout << "6-show page 10 recent statuses" << endl;
+	cout << "7-show friend's feed" << endl;
+	cout << "8-add a friend" << endl;
+	cout << "9-remove a friend" << endl;
+	cout << "10-like a page" << endl;
+	cout << "11-unlike a page" << endl;
+	cout << "12-show all users and pages" << endl;
+	cout << "13-show a friend's friend list" << endl;
+	cout << "14-show fans of a page" << endl;
+	cout << "15-exit\n" << endl;
+	cin >> action;
+	preformAction(action);
+}
+
+void Facebook::preformAction(int actionCode)
+{
+	switch (actionCode)
+	{
+	case 1:
+		addUser();
+	case 2:
+		addFanPage();
+	case 3:
+		int user;
+		cout << "Choose a user" << endl;
+		showMembers();
+		cin >> user;
+		friends[user - 1]->addStatus();
+	case 4:
+		int page;
+		cout << "Choose a page" << endl;
+		showPages();
+		cin >> page;
+		pages[page - 1]->addStatus();
+	case 5:
+		cout << "Choose a user" << endl;
+		showMembers();
+		cin >> user;
+		friends[user - 1]->PrintFriendStatus();
+	case 6:
+		int page;
+		cout << "Choose a page" << endl;
+		showPages();
+		cin >> page;
+		pages[page - 1]->PrintPagesStatus();
 	}
 }

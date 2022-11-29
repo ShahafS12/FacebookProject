@@ -21,4 +21,5 @@ public:
 	void checkSizeStatus();
 	void PrintPagesStatus();
 	void showMyFans();
+	void getPageName();
 };

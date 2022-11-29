@@ -16,7 +16,10 @@ public:
 	void checkSizePages();
 	void addFanPage();
 	void showMembers();
+	void showPages();
+	void menu();
 private:
 	void addDefaultPages();
 	void addDefaultFriends();
+	void preformAction(int actionCode);
 };
