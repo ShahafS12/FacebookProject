@@ -31,5 +31,8 @@ public:
 	void checkSizeFriends();
 	void PrintFriendStatus();
 	void addTwoDefaultStatus();
+	void getFriendName();
+	void showMyFriends();
+	void mostUpdatedStatuses();
 };
 

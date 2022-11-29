@@ -8,6 +8,8 @@ class Pages {
 private:
 	char* name;
 	Friend** fans;
+	int phyS_fans = 1;
+	int numOfFans = 0;
 	Status** status = new Status*;
 	int phyS_status = 1;
 	int numOfStatus = 0;
@@ -17,5 +19,6 @@ public:
 	Pages(char* _name);
 	void addStatus();
 	void checkSizeStatus();
-
+	void PrintPagesStatus();
+	void showMyFans();
 };

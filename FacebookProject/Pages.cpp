@@ -28,3 +28,16 @@ void Pages::checkSizeStatus() {
 		status = tmp;
 	}
 }
+
+void Pages::PrintPagesStatus() {
+	// Print the page statuses
+	for (int i = 0; i < numOfStatus; i++)
+		this->status[i]->printStatus();
+}
+
+void Pages::showMyFans() {
+	// print all the fans (Friends)
+	for (int i = 0; i < numOfFans; i++) {
+		fans[i]->getFriendName();
+	}
+}

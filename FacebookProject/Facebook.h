@@ -15,6 +15,7 @@ public:
 	void checkSizeFriends();
 	void checkSizePages();
 	void addFanPage();
+	void showMembers();
 private:
 	void addDefaultPages();
 	void addDefaultFriends();

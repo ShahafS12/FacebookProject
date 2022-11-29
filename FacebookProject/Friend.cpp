@@ -94,3 +94,25 @@ void Friend::PrintFriendStatus() {
 	for (int i = 0; i < numOfStatus; i++)
 		this->statuses[i]->printStatus();
 }
+
+void Friend::getFriendName() {
+	// get friend name
+	cout << this->fname << " " << this->lname << endl;
+}
+
+void Friend::showMyFriends() {
+	// Print all my friends
+	for (int i = 0; i < numOfFriends; i++) {
+		friends[i]->getFriendName();
+	}
+}
+
+void Friend::mostUpdatedStatuses() {
+	// print 10 most updated statuses of all friends
+	int num;
+	for (int i = 0; i < numOfFriends; i++) {
+		num = friends[i]->numOfStatus;
+		for (int j = num; j > num - 10; j--)
+			friends[i]->statuses[j]->printStatus();
+	}
+}

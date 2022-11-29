@@ -112,3 +112,10 @@ void Facebook::checkSizeFriends() {
 		friends = tmp;
 	}
 }
+
+void Facebook::showMembers() {
+	// Print all members in Facebook
+	for (int i = 0; i < numOfFriends; i++) {
+		friends[i]->getFriendName();
+	}
+}
