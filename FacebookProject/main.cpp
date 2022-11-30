@@ -2,7 +2,12 @@
 
 int main() {
 	Facebook f;
-	f.addDefaultData();
-	f.menu();
+	f.addFanPage();
+	f.pages[0]->addStatus();
+	f.pages[0]->addStatus();
+
+	f.pages[0]->PrintPagesStatus();
+	//f.addDefaultData();
+	//f.menu();
 	return 0;
 }

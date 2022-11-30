@@ -1,7 +1,7 @@
 #include "Pages.h"
 
 class Facebook {
-public:
+public: // ** SHOULD CHANGE IT TO PRIVATE **
 	Friend** friends = new Friend*;
 	int phyS_friends = 1;
 	int numOfFriends = 0;
