@@ -5,7 +5,6 @@ Friend::Friend(char* _fname, char* _lname, Date _dob) : fname(_strdup(_fname)), 
 void Friend::addStatus() {
 	char text[MAX_STATUS];
 	cout << "What is your status?" << endl;
-	cin.ignore();
 	cin.getline(text, MAX_STATUS);
 	Status* s = new Status(text);
 	checkSizeStatus();

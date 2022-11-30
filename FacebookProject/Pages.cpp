@@ -6,7 +6,6 @@ Pages::Pages(char* _name) : name(_strdup(_name)) {}
 void Pages::addStatus() {
 	char text[MAX_STATUS];
 	cout << "What is your status?" << endl;
-	cin.ignore();
 	cin.getline(text, MAX_STATUS);
 	Status* s = new Status(text);
 	checkSizeStatus();

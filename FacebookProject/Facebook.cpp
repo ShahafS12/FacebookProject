@@ -13,6 +13,7 @@ void Facebook::addUser()
 	cout << "Day:"; cin >> day;
 	cout << "Month:"; cin >> month;
 	cout << "Year:"; cin >> year;
+	char a = getchar(); // The only way cin working after...
 	Date d(day, month, year);
 	Friend* f = new Friend(fname, lname, d);
 	checkSizeFriends();
@@ -29,6 +30,7 @@ void Facebook::addFanPage() {
 	pages[numOfPages] = p;
 	numOfPages++;
 }
+
 
 void Facebook::addDefaultData()
 {
@@ -178,7 +180,6 @@ void Facebook::preformAction(int actionCode)
 		cin >> user;
 		friends[user - 1]->PrintFriendStatus();
 	case 6:
-		int page;
 		cout << "Choose a page" << endl;
 		showPages();
 		cin >> page;
