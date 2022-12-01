@@ -154,10 +154,10 @@ void Friend::showMyFriends() {
 
 void Friend::mostUpdatedStatuses() {
 	// print 10 most updated statuses of all friends
-	int num;
+	int num, x = 10;
 	for (int i = 0; i < numOfFriends; i++) {
-		num = friends[i]->numOfStatus;
-		for (int j = num; j > num - 10; j--)
+		num = friends[i]->numOfStatus -1;
+		for (int j = num; j>=0 && x>=0; j-- , x--)
 			friends[i]->statuses[j]->printStatus();
 	}
 }

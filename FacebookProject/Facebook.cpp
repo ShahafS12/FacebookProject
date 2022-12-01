@@ -35,7 +35,7 @@ void Facebook::addFanPage() {
 void Facebook::addDefaultData()
 {
 	addDefaultPages();
-	addDefaultFriends();
+	addDefaultFriends(pages[0],pages[1],pages[2]);
 }
 
 void Facebook::addDefaultPages()
@@ -57,7 +57,7 @@ void Facebook::addDefaultPages()
 	numOfPages++;
 }
 
-void Facebook::addDefaultFriends()
+void Facebook::addDefaultFriends(Pages* p1, Pages* p2, Pages* p3)
 {//still needs to like pages for those friends
 	Date d1(19, 9, 1999);
 	Date d2(1, 11, 1997);
@@ -70,17 +70,21 @@ void Facebook::addDefaultFriends()
 	char lname3[MAX_NAME] = "Bieber";
 	Friend* f1 = new Friend(fname1, lname1, d1);
 	f1->addTwoDefaultStatus();
+	//f1->likePage(p1,true);
+	//f1->likePage(p2, true);
 	checkSizeFriends();
 	friends[numOfFriends] = f1;
 	numOfFriends++;
 	Friend* f2 = new Friend(fname2, lname2, d2);
 	f2->addTwoDefaultStatus();
+	//f2->likePage(p3, true);
 	f2->addFriend(f1,true);
 	checkSizeFriends();
 	friends[numOfFriends] = f2;
 	numOfFriends++;
 	Friend* f3 = new Friend(fname3, lname3, d3);
 	f3->addTwoDefaultStatus();
+	//f3->likePage(p1, true);
 	f3->addFriend(f2,true);
 	checkSizeFriends();
 	friends[numOfFriends] = f3;
@@ -156,33 +160,94 @@ void Facebook::menu()
 
 void Facebook::preformAction(int actionCode)
 {
+	int user,page,secondUser;
 	switch (actionCode)
 	{
 	case 1:
 		addUser();
+		break;
 	case 2:
 		addFanPage();
+		break;
 	case 3:
-		int user;
 		cout << "Choose a user" << endl;
 		showMembers();
 		cin >> user;
 		friends[user - 1]->addStatus();
+		break;
 	case 4:
-		int page;
 		cout << "Choose a page" << endl;
 		showPages();
 		cin >> page;
 		pages[page - 1]->addStatus();
+		break;
 	case 5:
 		cout << "Choose a user" << endl;
 		showMembers();
 		cin >> user;
-		friends[user - 1]->PrintFriendStatus();
+		friends[user - 1]->mostUpdatedStatuses();
+		break;
 	case 6:
 		cout << "Choose a page" << endl;
 		showPages();
 		cin >> page;
 		pages[page - 1]->PrintPagesStatus();
+		break;
+	case 7:
+		cout << "Choose a user" << endl;
+		showMembers();
+		cin >> user;
+		friends[user - 1]->PrintFriendStatus();
+		break;
+	case 8:
+		cout << "Choose two users to connect" << endl;
+		showMembers();
+		cin >> user;
+		cin >> secondUser;
+		friends[user - 1]->addFriend(friends[secondUser - 1], true);
+		break;
+	case 9:
+		cout << "Choose two users remove friendship" << endl;
+		showMembers();
+		cin >> user;
+		cin >> secondUser;
+		friends[user - 1]->removeFriend(friends[secondUser - 1], true);
+		break;
+	case 10:
+		cout << "Choose a page to like" << endl;
+		showPages();
+		cin >> page;
+		cout << "choose a user to like chosen page" << endl;
+		showMembers();
+		cin >> user;
+		pages[page - 1]->addFan(friends[user - 1], true);
+		break;
+	case 11:
+		cout << "Choose a page to unlike" << endl;
+		showPages();
+		cin >> page;
+		cout << "choose a user to unlike chosen page" << endl;
+		showMembers();
+		cin >> user;
+		pages[page - 1]->removeFan(friends[user - 1], true);
+		break;
+	case 12:
+		cout << "Users:" << endl;
+		showMembers();
+		cout << "Pages:" << endl;
+		showPages();
+		break;
+	case 13:
+		cout << "Choose a user" << endl;
+		showMembers();
+		cin >> user;
+		friends[user - 1]->showMyFriends();
+		break;
+	case 14:
+		cout << "Choose a page" << endl;
+		showPages();
+		cin >> page;
+		pages[page - 1]->showMyFans();
+		break;
 	}
 }
