@@ -45,3 +45,25 @@ void Pages::getPageName() {
 	// get friend name
 	cout << this->name << endl;
 }
+
+void Pages::chekSizeFans()
+{
+	if (this->phyS_fans == this->numOfFans)
+	{
+		this->phyS_fans *= 2;
+		Friend** tmp = new Friend * [phyS_fans];
+		for (int i = 0; i < numOfFans; i++)
+			tmp[i] = fans[i];
+		delete[] fans;
+		fans = tmp;
+	}
+}
+
+void Pages::addFan(Friend* _friend, bool sender)
+{//check if alrady a fan
+	chekSizeFans();
+	fans[numOfFans] = _friend;
+	if (sender)
+		_friend->likePage(this,false);
+		numOfFans++;
+}
