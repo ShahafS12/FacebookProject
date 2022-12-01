@@ -9,7 +9,7 @@ class Friend;
 class Pages {
 private:
 	char* name;
-	Friend** fans;
+	Friend** fans = new Friend*;
 	int phyS_fans = 1;
 	int numOfFans = 0;
 	Status** status = new Status*;

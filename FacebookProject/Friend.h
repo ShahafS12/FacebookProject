@@ -23,9 +23,9 @@ private:
 	Friend** friends = new Friend*;
 	int phyS_friends = 1;
 	int numOfFriends = 0;
-	Pages** likedPages;
+	Pages** likedPages = new Pages*;
 	int phyS_pages = 1;
-	int numOfLikedPages = 1;
+	int numOfLikedPages = 0;
 
 public:
 	Friend(char* _fname, char* _lname, Date _dob);

@@ -33,9 +33,7 @@ void Friend::addTwoDefaultStatus()
 
 void Friend::addFriend(Friend* _friend, bool sender)
 {//connects between two users after checking they werent friends before
-	bool alreadyFriends;
-	if (sender)
-		alreadyFriends = checkIfFriends(_friend);
+	bool alreadyFriends = checkIfFriends(_friend);
 	if (!alreadyFriends)
 	{
 		checkSizeFriends();

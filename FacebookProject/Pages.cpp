@@ -19,7 +19,6 @@ void Pages::addStatus() {
 	numOfStatus++;
 }
 
-
 void Pages::checkSizeStatus() {
 	if (this->phyS_status == this->numOfStatus)
 	{

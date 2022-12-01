@@ -70,21 +70,21 @@ void Facebook::addDefaultFriends(Pages* p1, Pages* p2, Pages* p3)
 	char lname3[MAX_NAME] = "Bieber";
 	Friend* f1 = new Friend(fname1, lname1, d1);
 	f1->addTwoDefaultStatus();
-	//f1->likePage(p1,true);
-	//f1->likePage(p2, true);
+	f1->likePage(p1,true);
+	f1->likePage(p2, true);
 	checkSizeFriends();
 	friends[numOfFriends] = f1;
 	numOfFriends++;
 	Friend* f2 = new Friend(fname2, lname2, d2);
 	f2->addTwoDefaultStatus();
-	//f2->likePage(p3, true);
+	f2->likePage(p3, true);
 	f2->addFriend(f1,true);
 	checkSizeFriends();
 	friends[numOfFriends] = f2;
 	numOfFriends++;
 	Friend* f3 = new Friend(fname3, lname3, d3);
 	f3->addTwoDefaultStatus();
-	//f3->likePage(p1, true);
+	f3->likePage(p1, true);
 	f3->addFriend(f2,true);
 	checkSizeFriends();
 	friends[numOfFriends] = f3;
@@ -141,6 +141,7 @@ void Facebook::menu()
 	printMenu();
 	cin >> action;
 	preformAction(action);
+	cout << "\n" << endl;
 	menu();
 }
 
