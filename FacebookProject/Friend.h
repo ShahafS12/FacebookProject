@@ -5,9 +5,12 @@ using namespace std;
 
 #include "Date.h"
 #include "Status.h"
+#include "Pages.h"
 
 const int MAX_STATUS = 300;
 const int MAX_NAME = 15;
+
+class Pages;
 
 class Friend {
 private:
@@ -20,7 +23,9 @@ private:
 	Friend** friends = new Friend*;
 	int phyS_friends = 1;
 	int numOfFriends = 0;
-	//Pages** pages;
+	Pages** likedPages;
+	int phyS_pages = 1;
+	int numOfLikedPages = 1;
 
 public:
 	Friend(char* _fname, char* _lname, Date _dob);
@@ -30,9 +35,12 @@ public:
 	void addFriend(Friend* _friend, bool sender);
 	void checkSizeStatus();
 	void checkSizeFriends();
+	void checkSizePages();
 	void PrintFriendStatus();
 	void addTwoDefaultStatus();
 	void getFriendName();
 	void showMyFriends();
 	void mostUpdatedStatuses();
+	void likePage(Pages* _toLike, bool sender);
+	void unlikePage(Pages* _toUnlike, bool sender);
 };

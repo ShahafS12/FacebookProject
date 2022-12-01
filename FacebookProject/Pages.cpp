@@ -51,3 +51,48 @@ void Pages::getPageName() {
 	cout << this->name << endl;
 }
 
+void Pages::chekSizeFans()
+{
+	if (this->phyS_fans == this->numOfFans)
+	{
+		this->phyS_fans *= 2;
+		Friend** tmp = new Friend * [phyS_fans];
+		for (int i = 0; i < numOfFans; i++)
+			tmp[i] = fans[i];
+		delete[] fans;
+		fans = tmp;
+	}
+}
+
+void Pages::addFan(Friend* _friend, bool sender)
+{//check if alrady a fan
+	chekSizeFans();
+	fans[numOfFans] = _friend;
+	if (sender)
+		_friend->likePage(this,false);
+		numOfFans++;
+}
+
+void Pages::removeFan(Friend* _friend, bool remover)
+{
+	bool foundFan = false;
+	for (int i = 0; i < numOfFans; i++)
+	{
+		if (_friend == fans[i])
+		{
+			foundFan = true;
+			if (i == numOfFans - 1)
+				delete fans[i];
+			else
+			{
+				fans[i] = fans[numOfFans - 1];
+				delete fans[numOfFans - 1];
+			}
+			numOfFans--;
+		}
+		if (remover)
+			_friend->unlikePage(this, false);
+	}
+	if (foundFan == false)
+		cout << "User was not in friend list" << endl;
+}

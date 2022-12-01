@@ -31,7 +31,7 @@ void Friend::addTwoDefaultStatus()
 }
 
 void Friend::addFriend(Friend* _friend, bool sender)
-{
+{//check if already friends
 	checkSizeFriends();
 	friends[numOfFriends] = _friend;
 	if (sender)
@@ -63,6 +63,40 @@ void Friend::removeFriend(Friend* _friend, bool remover)
 		cout << "User was not in friend list" << endl;
 }
 
+void Friend::unlikePage(Pages* _toUnlike, bool remover)
+{
+
+	bool foundPage = false;
+	for (int i = 0; i < numOfLikedPages; i++)
+	{
+		if (_toUnlike == likedPages[i])
+		{
+			foundPage = true;
+			if (i == numOfLikedPages - 1)
+				delete likedPages[i];
+			else
+			{
+				likedPages[i] = likedPages[numOfFriends - 1];
+				delete likedPages[numOfLikedPages - 1];
+			}
+			numOfLikedPages--;
+		}
+		if (remover)
+			_toUnlike->removeFan(this, false);
+	}
+	if (foundPage == false)
+		cout << "page was not previously liked" << endl;
+}
+
+void Friend::likePage(Pages* _toLike, bool sender)
+{
+	checkSizePages();
+	likedPages[numOfLikedPages] = _toLike;
+	if (sender)
+		_toLike->addFan(this, false);
+	numOfLikedPages++;
+}
+
 
 void Friend::checkSizeStatus() {
 	if (this->phyS_status == this->numOfStatus)
@@ -73,6 +107,18 @@ void Friend::checkSizeStatus() {
 			tmp[i] = statuses[i];
 		delete[] statuses;
 		statuses = tmp;
+	}
+}
+
+void Friend::checkSizePages() {
+	if (this->phyS_pages == this->numOfLikedPages)
+	{
+		this->phyS_pages *= 2;
+		Pages** tmp = new Pages * [phyS_pages];
+		for (int i = 0; i < numOfLikedPages; i++)
+			tmp[i] = likedPages[i];
+		delete[] likedPages;
+		likedPages = tmp;
 	}
 }
 
@@ -111,7 +157,7 @@ void Friend::mostUpdatedStatuses() {
 	int num, x = 10;
 	for (int i = 0; i < numOfFriends; i++) {
 		num = friends[i]->numOfStatus -1;
-		for (int j = num; j >=0 && x>=0; j-- , x--)
+		for (int j = num; j>=0 && x>=0; j-- , x--)
 			friends[i]->statuses[j]->printStatus();
 	}
 }

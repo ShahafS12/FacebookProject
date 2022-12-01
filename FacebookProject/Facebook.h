@@ -21,6 +21,6 @@ public:
 	void exit();
 private:
 	void addDefaultPages();
-	void addDefaultFriends();
+	void addDefaultFriends(Pages* p1, Pages* p2, Pages* p3);
 	void preformAction(int actionCode);
 };

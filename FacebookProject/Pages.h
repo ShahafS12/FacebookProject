@@ -4,6 +4,8 @@
 
 const int MAX_PAGE_NAME = 30;
 
+class Friend;
+
 class Pages {
 private:
 	char* name;
@@ -19,8 +21,11 @@ public:
 	Pages(char* _name);
 	void addStatus();
 	void checkSizeStatus();
+	void chekSizeFans();
 	void PrintPagesStatus();
 	void showMyFans();
 	void getPageName();
+	void addFan(Friend* _friend, bool sender);
+	void removeFan(Friend* _friend, bool sender);
 	~Pages();
 };
