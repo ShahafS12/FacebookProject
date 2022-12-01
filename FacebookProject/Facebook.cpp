@@ -144,7 +144,7 @@ void Facebook::menu()
 	cout << "3-add new status to a friend" << endl;
 	cout << "4-add new status to a page" << endl;
 	cout << "5-show friend 10 recent statuses" << endl;
-	cout << "6-show page 10 recent statuses" << endl;
+	cout << "6-show page's statuses" << endl;
 	cout << "7-show friend's feed" << endl;
 	cout << "8-add a friend" << endl;
 	cout << "9-remove a friend" << endl;
@@ -249,18 +249,19 @@ void Facebook::preformAction(int actionCode)
 		cin >> page;
 		pages[page - 1]->showMyFans();
 		break;
+	case 15:
+		exit();
+		break;
 	}
 }
 
 void Facebook::exit() {
 	// Delete all the allocations
 	for (int i = 0; i < numOfFriends; i++)
-		if (friends[i] != nullptr)
 			delete (friends[i]);
 	delete[] friends;
 
 	for (int i = 0; i < numOfPages; i++)
 		delete (pages[i]);
 	delete[] pages;
-
 }
