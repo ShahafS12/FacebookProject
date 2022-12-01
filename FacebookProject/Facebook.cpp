@@ -186,3 +186,16 @@ void Facebook::preformAction(int actionCode)
 		pages[page - 1]->PrintPagesStatus();
 	}
 }
+
+void Facebook::exit() {
+	// Delete all the allocations
+	for (int i = 0; i < numOfFriends; i++)
+		if (friends[i] != nullptr)
+			delete (friends[i]);
+	delete[] friends;
+
+	for (int i = 0; i < numOfPages; i++)
+		delete (pages[i]);
+	delete[] pages;
+
+}

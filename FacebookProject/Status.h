@@ -14,5 +14,6 @@ private:
 public:
 	Status(char* text);
 	Status(const Status& cp);
+	~Status();
 	void printStatus();
 };

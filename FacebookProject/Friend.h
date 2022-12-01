@@ -24,9 +24,10 @@ private:
 
 public:
 	Friend(char* _fname, char* _lname, Date _dob);
+	~Friend();
 	void addStatus();
 	void removeFriend(Friend* _friend, bool remover);
-	void addFriend(Friend* _friend,bool sender);
+	void addFriend(Friend* _friend, bool sender);
 	void checkSizeStatus();
 	void checkSizeFriends();
 	void PrintFriendStatus();
@@ -35,4 +36,3 @@ public:
 	void showMyFriends();
 	void mostUpdatedStatuses();
 };
-

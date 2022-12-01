@@ -8,6 +8,9 @@ Status::Status(const Status& cp) {
 	time = cp.time;
 }
 
+Status::~Status() { delete[] text; }
+
+
 void Status::printStatus() {
 	cout << endl;
 	cout << text << endl;

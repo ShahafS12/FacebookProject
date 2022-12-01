@@ -22,4 +22,5 @@ public:
 	void PrintPagesStatus();
 	void showMyFans();
 	void getPageName();
+	~Pages();
 };

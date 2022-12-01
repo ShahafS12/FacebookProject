@@ -18,6 +18,7 @@ public:
 	void showMembers();
 	void showPages();
 	void menu();
+	void exit();
 private:
 	void addDefaultPages();
 	void addDefaultFriends();

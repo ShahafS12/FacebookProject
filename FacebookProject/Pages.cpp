@@ -2,6 +2,11 @@
 
 Pages::Pages(char* _name) : name(_strdup(_name)) {}
 
+Pages::~Pages() {
+	for (int i = 0; i < numOfStatus; i++)
+		delete (status[i]);
+	delete[] status;
+}
 
 void Pages::addStatus() {
 	char text[MAX_STATUS];
@@ -45,3 +50,4 @@ void Pages::getPageName() {
 	// get friend name
 	cout << this->name << endl;
 }
+
