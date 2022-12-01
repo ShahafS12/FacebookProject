@@ -26,4 +26,5 @@ public:
 	void showMyFans();
 	void getPageName();
 	void addFan(Friend* _friend, bool sender);
+	void removeFan(Friend* _friend, bool sender);
 };

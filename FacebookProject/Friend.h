@@ -23,7 +23,7 @@ private:
 	Friend** friends = new Friend*;
 	int phyS_friends = 1;
 	int numOfFriends = 0;
-	Pages** pages;
+	Pages** likedPages;
 	int phyS_pages = 1;
 	int numOfLikedPages = 1;
 
@@ -41,5 +41,6 @@ public:
 	void showMyFriends();
 	void mostUpdatedStatuses();
 	void likePage(Pages* _toLike, bool sender);
+	void unlikePage(Pages* _toUnlike, bool sender);
 };
 

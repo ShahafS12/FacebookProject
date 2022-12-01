@@ -63,10 +63,35 @@ void Friend::removeFriend(Friend* _friend, bool remover)
 		cout << "User was not in friend list" << endl;
 }
 
+void Friend::unlikePage(Pages* _toUnlike, bool remover)
+{
+
+	bool foundPage = false;
+	for (int i = 0; i < numOfLikedPages; i++)
+	{
+		if (_toUnlike == likedPages[i])
+		{
+			foundPage = true;
+			if (i == numOfLikedPages - 1)
+				delete likedPages[i];
+			else
+			{
+				likedPages[i] = likedPages[numOfFriends - 1];
+				delete likedPages[numOfLikedPages - 1];
+			}
+			numOfLikedPages--;
+		}
+		if (remover)
+			_toUnlike->removeFan(this, false);
+	}
+	if (foundPage == false)
+		cout << "page was not previously liked" << endl;
+}
+
 void Friend::likePage(Pages* _toLike, bool sender)
 {
 	checkSizePages();
-	pages[numOfLikedPages] = _toLike;
+	likedPages[numOfLikedPages] = _toLike;
 	if (sender)
 		_toLike->addFan(this, false);
 	numOfLikedPages++;
@@ -91,9 +116,9 @@ void Friend::checkSizePages() {
 		this->phyS_pages *= 2;
 		Pages** tmp = new Pages * [phyS_pages];
 		for (int i = 0; i < numOfLikedPages; i++)
-			tmp[i] = pages[i];
-		delete[] pages;
-		pages = tmp;
+			tmp[i] = likedPages[i];
+		delete[] likedPages;
+		likedPages = tmp;
 	}
 }
 
