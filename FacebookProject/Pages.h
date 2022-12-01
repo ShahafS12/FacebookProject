@@ -28,4 +28,6 @@ public:
 	void addFan(Friend* _friend, bool sender);
 	void removeFan(Friend* _friend, bool sender);
 	~Pages();
+private:
+	bool isFan(Friend* _friend);
 };

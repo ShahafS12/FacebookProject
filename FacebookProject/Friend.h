@@ -43,4 +43,7 @@ public:
 	void mostUpdatedStatuses();
 	void likePage(Pages* _toLike, bool sender);
 	void unlikePage(Pages* _toUnlike, bool sender);
+private:
+	bool checkIfFriends(Friend* _friend);
+	bool pageLiked(Pages* _toLike);
 };

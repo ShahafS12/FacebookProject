@@ -67,11 +67,27 @@ void Pages::chekSizeFans()
 
 void Pages::addFan(Friend* _friend, bool sender)
 {//check if alrady a fan
-	chekSizeFans();
-	fans[numOfFans] = _friend;
-	if (sender)
-		_friend->likePage(this,false);
+	bool alreadyFan = isFan(_friend);
+	if (!alreadyFan)
+	{
+		chekSizeFans();
+		fans[numOfFans] = _friend;
+		if (sender)
+			_friend->likePage(this, false);
 		numOfFans++;
+	}
+	else
+		cout << "User already likes this page" << endl;
+}
+
+bool Pages::isFan(Friend* _friend)
+{
+	for (int i = 0; i < numOfFans; i++)
+	{
+		if (_friend == fans[i])
+			return true;
+	}
+	return false;
 }
 
 void Pages::removeFan(Friend* _friend, bool remover)

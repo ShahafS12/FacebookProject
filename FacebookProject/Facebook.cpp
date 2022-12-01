@@ -138,6 +138,14 @@ void Facebook::showPages() {
 void Facebook::menu()
 {
 	int action;
+	printMenu();
+	cin >> action;
+	preformAction(action);
+	menu();
+}
+
+void Facebook::printMenu()
+{//prints actions menu for user to pick from
 	cout << "Welcome to Facebook.\nChoose action" << endl;
 	cout << "1-add new user" << endl;
 	cout << "2-add new fan page" << endl;
@@ -154,12 +162,10 @@ void Facebook::menu()
 	cout << "13-show a friend's friend list" << endl;
 	cout << "14-show fans of a page" << endl;
 	cout << "15-exit\n" << endl;
-	cin >> action;
-	preformAction(action);
 }
 
 void Facebook::preformAction(int actionCode)
-{
+{//preforms action according to chosen action code
 	int user,page,secondUser;
 	switch (actionCode)
 	{

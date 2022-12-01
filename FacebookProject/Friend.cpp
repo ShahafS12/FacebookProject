@@ -32,16 +32,34 @@ void Friend::addTwoDefaultStatus()
 }
 
 void Friend::addFriend(Friend* _friend, bool sender)
-{//check if already friends
-	checkSizeFriends();
-	friends[numOfFriends] = _friend;
+{//connects between two users after checking they werent friends before
+	bool alreadyFriends;
 	if (sender)
-		_friend->addFriend(this, false);
-	numOfFriends++;
+		alreadyFriends = checkIfFriends(_friend);
+	if (!alreadyFriends)
+	{
+		checkSizeFriends();
+		friends[numOfFriends] = _friend;
+		if (sender)
+			_friend->addFriend(this, false);
+		numOfFriends++;
+	}
+	else
+		cout << "Users already friends" << endl;
+}
+
+bool Friend::checkIfFriends(Friend* _friend)
+{//checks if two users are friends
+	for (int i = 0; i < numOfFriends; i++)
+	{
+		if (_friend == friends[i])
+			return true;
+	}
+	return false;
 }
 
 void Friend::removeFriend(Friend* _friend, bool remover)
-{
+{//checks if two users are friends, removes friendship if they are
 	bool foundFriend = false;
 	for (int i = 0; i < numOfFriends; i++)
 	{
@@ -65,8 +83,7 @@ void Friend::removeFriend(Friend* _friend, bool remover)
 }
 
 void Friend::unlikePage(Pages* _toUnlike, bool remover)
-{
-
+{//checks if a user likes a page, unlikes it if he does
 	bool foundPage = false;
 	for (int i = 0; i < numOfLikedPages; i++)
 	{
@@ -90,14 +107,29 @@ void Friend::unlikePage(Pages* _toUnlike, bool remover)
 }
 
 void Friend::likePage(Pages* _toLike, bool sender)
-{
-	checkSizePages();
-	likedPages[numOfLikedPages] = _toLike;
-	if (sender)
-		_toLike->addFan(this, false);
-	numOfLikedPages++;
+{//checks if page is already liked, likes it if it doesnt
+	bool alreadyLiked = pageLiked(_toLike);
+	if (!alreadyLiked)
+	{
+		checkSizePages();
+		likedPages[numOfLikedPages] = _toLike;
+		if (sender)
+			_toLike->addFan(this, false);
+		numOfLikedPages++;
+	}
+	else
+		cout << "Page already liked" << endl;
 }
 
+bool Friend::pageLiked(Pages* _toLike)
+{
+	for (int i = 0; i < numOfFriends; i++)
+	{
+		if (_toLike == likedPages[i])
+			return true;
+	}
+	return false;
+}
 
 void Friend::checkSizeStatus() {
 	if (this->phyS_status == this->numOfStatus)
