@@ -25,9 +25,9 @@ public:
 	void PrintPagesStatus();
 	void showMyFans();
 	void getPageName();
-	void addFan(Friend* _friend, bool sender);
-	void removeFan(Friend* _friend, bool sender);
+	void addFan(Friend* const _friend, bool sender);
+	void removeFan(Friend* const _friend, bool sender); // ** ASK Shahaf about const **
 	~Pages();
 private:
-	bool isFan(Friend* _friend);
+	bool isFan(Friend* const _friend);
 };

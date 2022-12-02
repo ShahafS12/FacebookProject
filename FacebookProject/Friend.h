@@ -41,9 +41,9 @@ public:
 	void getFriendName();
 	void showMyFriends();
 	void mostUpdatedStatuses();
-	void likePage(Pages* _toLike, bool sender);
+	void likePage(Pages* const _toLike, bool sender);
 	void unlikePage(Pages* _toUnlike, bool sender);
 private:
-	bool checkIfFriends(Friend* _friend);
-	bool pageLiked(Pages* _toLike);
+	bool checkIfFriends(Friend* const _friend);
+	bool pageLiked(Pages* const _toLike);
 };

@@ -6,6 +6,7 @@
 using namespace std;
 
 Time::Time() {
+    // get current time
     std::time_t t = std::time(0);  // get time now
     std::tm* now = std::localtime(&t);
     hour = now->tm_hour;
@@ -13,5 +14,6 @@ Time::Time() {
 }
 
 void Time::printTime() {
+    // print the time
     cout << hour << ":" << minute << endl;
 }

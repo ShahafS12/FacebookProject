@@ -3,12 +3,14 @@
 Pages::Pages(char* _name) : name(_strdup(_name)) {}
 
 Pages::~Pages() {
+	// delete constactor
 	for (int i = 0; i < numOfStatus; i++)
 		delete (status[i]);
 	delete[] status;
 }
 
 void Pages::addStatus() {
+	// add status to page
 	char text[MAX_STATUS];
 	cout << "What is your status?" << endl;
 	cin.ignore();
@@ -20,6 +22,8 @@ void Pages::addStatus() {
 }
 
 void Pages::checkSizeStatus() {
+	// check the size of the array - if needed allocate more 
+
 	if (this->phyS_status == this->numOfStatus)
 	{
 		this->phyS_status *= 2;
@@ -64,7 +68,7 @@ void Pages::chekSizeFans()
 	}
 }
 
-void Pages::addFan(Friend* _friend, bool sender)
+void Pages::addFan(Friend* const _friend, bool sender)
 {//check if alrady a fan
 	bool alreadyFan = isFan(_friend);
 	if (!alreadyFan)
@@ -79,7 +83,7 @@ void Pages::addFan(Friend* _friend, bool sender)
 		cout << "User already likes this page" << endl;
 }
 
-bool Pages::isFan(Friend* _friend)
+bool Pages::isFan(Friend* const _friend)
 {
 	for (int i = 0; i < numOfFans; i++)
 	{
@@ -89,7 +93,7 @@ bool Pages::isFan(Friend* _friend)
 	return false;
 }
 
-void Pages::removeFan(Friend* _friend, bool remover)
+void Pages::removeFan(Friend* const _friend, bool remover)
 {
 	bool foundFan = false;
 	for (int i = 0; i < numOfFans; i++)

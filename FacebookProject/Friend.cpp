@@ -3,6 +3,7 @@
 Friend::Friend(char* _fname, char* _lname, Date _dob) : fname(_strdup(_fname)), lname(_strdup(_lname)), dob(_dob) {}
 
 void Friend::addStatus() {
+	// Add status to a user
 	char text[MAX_STATUS];
 	cout << "What is your status?" << endl;
 	cin.ignore();
@@ -14,7 +15,7 @@ void Friend::addStatus() {
 }
 
 void Friend::addTwoDefaultStatus()
-{
+{  // add the default statuses
 	char text1[MAX_STATUS];
 	strcpy(text1, fname);
 	strcat(text1, "'s first status");
@@ -32,7 +33,7 @@ void Friend::addTwoDefaultStatus()
 }
 
 void Friend::addFriend(Friend* _friend, bool sender)
-{//connects between two users after checking they werent friends before
+{// connects between two users after checking they werent friends before
 	bool alreadyFriends = checkIfFriends(_friend);
 	if (!alreadyFriends)
 	{
@@ -46,7 +47,7 @@ void Friend::addFriend(Friend* _friend, bool sender)
 		cout << "Users already friends" << endl;
 }
 
-bool Friend::checkIfFriends(Friend* _friend)
+bool Friend::checkIfFriends(Friend* const _friend)
 {//checks if two users are friends
 	for (int i = 0; i < numOfFriends; i++)
 	{
@@ -57,7 +58,7 @@ bool Friend::checkIfFriends(Friend* _friend)
 }
 
 void Friend::removeFriend(Friend* _friend, bool remover)
-{//checks if two users are friends, removes friendship if they are
+{// checks if two users are friends, removes friendship if they are
 	bool foundFriend = false;
 	for (int i = 0; i < numOfFriends; i++)
 	{
@@ -104,7 +105,7 @@ void Friend::unlikePage(Pages* _toUnlike, bool remover)
 		cout << "page was not previously liked" << endl;
 }
 
-void Friend::likePage(Pages* _toLike, bool sender)
+void Friend::likePage(Pages* const _toLike, bool sender)
 {//checks if page is already liked, likes it if it doesnt
 	bool alreadyLiked = pageLiked(_toLike);
 	if (!alreadyLiked)
@@ -119,7 +120,7 @@ void Friend::likePage(Pages* _toLike, bool sender)
 		cout << "Page already liked" << endl;
 }
 
-bool Friend::pageLiked(Pages* _toLike)
+bool Friend::pageLiked(Pages* const _toLike)
 {
 	for (int i = 0; i < numOfFriends; i++)
 	{
@@ -130,6 +131,7 @@ bool Friend::pageLiked(Pages* _toLike)
 }
 
 void Friend::checkSizeStatus() {
+	// check the size of the array - if needed allocate more 
 	if (this->phyS_status == this->numOfStatus)
 	{
 		this->phyS_status *= 2;
@@ -142,6 +144,8 @@ void Friend::checkSizeStatus() {
 }
 
 void Friend::checkSizePages() {
+	// check the size of the array - if needed allocate more 
+
 	if (this->phyS_pages == this->numOfLikedPages)
 	{
 		this->phyS_pages *= 2;
@@ -154,7 +158,8 @@ void Friend::checkSizePages() {
 }
 
 void Friend::checkSizeFriends()
-{
+{ 	// check the size of the array - if needed allocate more 
+
 	if (this->phyS_friends == this->numOfFriends)
 	{
 		this->phyS_friends *= 2;
@@ -167,6 +172,7 @@ void Friend::checkSizeFriends()
 }
 
 void Friend::PrintFriendStatus() {
+	// print the statuses
 	for (int i = 0; i < numOfStatus; i++)
 		this->statuses[i]->printStatus();
 }

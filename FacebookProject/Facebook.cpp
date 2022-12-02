@@ -1,7 +1,7 @@
 #include "Facebook.h"
 
 void Facebook::addUser()
-{
+{ 	// Add user to facebook
 	char fname[MAX_NAME], lname[MAX_NAME];
 	short int day, month, year;
 
@@ -22,6 +22,7 @@ void Facebook::addUser()
 }
 
 void Facebook::addFanPage() {
+	// Add fan page to pages on facebook
 	char name[MAX_PAGE_NAME];
 	cout << "Enter name of fan page: " << endl;
 	cin.getline(name, MAX_PAGE_NAME);
@@ -33,13 +34,13 @@ void Facebook::addFanPage() {
 
 
 void Facebook::addDefaultData()
-{
+{ // add deafalt data to facebook
 	addDefaultPages();
 	addDefaultFriends(pages[0],pages[1],pages[2]);
 }
 
 void Facebook::addDefaultPages()
-{
+{   // A function to add default pages
 	char pname1[MAX_PAGE_NAME] = "Justin to israel";
 	char pname2[MAX_PAGE_NAME] = "Hapshuta";
 	char pname3[MAX_PAGE_NAME] = "Lemons cummunity";
@@ -58,7 +59,7 @@ void Facebook::addDefaultPages()
 }
 
 void Facebook::addDefaultFriends(Pages* p1, Pages* p2, Pages* p3)
-{//still needs to like pages for those friends
+{// still needs to like pages for those friends
 	Date d1(19, 9, 1999);
 	Date d2(1, 11, 1997);
 	Date d3(1, 4, 1985);
@@ -92,6 +93,7 @@ void Facebook::addDefaultFriends(Pages* p1, Pages* p2, Pages* p3)
 }
 
 void Facebook::checkSizePages() {
+	// check the size of the array - if needed allocate more 
 	if (this->phyS_pages == this->numOfPages)
 	{
 		this->phyS_pages *= 2;
@@ -106,6 +108,7 @@ void Facebook::checkSizePages() {
 }
 
 void Facebook::checkSizeFriends() {
+	// check the size of the array - if needed allocate more 
 	if (this->phyS_friends == this->numOfFriends)
 	{
 		this->phyS_friends *= 2;
@@ -136,7 +139,7 @@ void Facebook::showPages() {
 }
 
 void Facebook::menu()
-{
+{ // The menu of the Facebook
 	int action;
 	printMenu();
 	cin >> action;

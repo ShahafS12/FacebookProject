@@ -12,6 +12,7 @@ Status::~Status() { delete[] text; }
 
 
 void Status::printStatus() {
+	// print the status
 	cout << endl;
 	cout << text << endl;
 	this->date.printDate();
