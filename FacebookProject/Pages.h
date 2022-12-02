@@ -1,6 +1,7 @@
 #pragma once
 #include "Friend.h"
 #include "Status.h"
+using namespace std;
 
 const int MAX_PAGE_NAME = 30;
 

@@ -1,7 +1,6 @@
 #define _CRT_SECURE_NO_WARNINGS
 #pragma once
 #include <iostream>
-
 #include "Date.h"
 #include "Status.h"
 #include "Pages.h"

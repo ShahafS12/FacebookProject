@@ -1,5 +1,5 @@
-#include "Friend.h"
 using namespace std;
+#include "Friend.h"
 
 Friend::Friend(char* _fname, char* _lname, Date _dob) : fname(_strdup(_fname)), lname(_strdup(_lname)), dob(_dob) {}
 
