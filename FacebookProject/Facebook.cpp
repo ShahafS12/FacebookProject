@@ -25,6 +25,7 @@ void Facebook::addFanPage() {
 	// Add fan page to pages on facebook
 	char name[MAX_PAGE_NAME];
 	cout << "Enter name of fan page: " << endl;
+	cin.ignore();
 	cin.getline(name, MAX_PAGE_NAME);
 	Pages* p = new Pages(name);
 	checkSizePages();
@@ -260,12 +261,12 @@ void Facebook::preformAction(int actionCode)
 		pages[page - 1]->showMyFans();
 		break;
 	case 15:
-		exit();
+		leaveFacebook();
 		break;
 	}
 }
 
-void Facebook::exit() {
+void Facebook::leaveFacebook() {
 	// Delete all the allocations
 	for (int i = 0; i < numOfFriends; i++)
 			delete (friends[i]);
@@ -274,4 +275,6 @@ void Facebook::exit() {
 	for (int i = 0; i < numOfPages; i++)
 		delete (pages[i]);
 	delete[] pages;
+
+	exit(1);
 }

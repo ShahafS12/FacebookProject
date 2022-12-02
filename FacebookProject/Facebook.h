@@ -18,7 +18,7 @@ public:
 	void showMembers();
 	void showPages();
 	void menu();
-	void exit();
+	void leaveFacebook();
 private:
 	void addDefaultPages();
 	void addDefaultFriends(Pages* p1, Pages* p2, Pages* p3);
