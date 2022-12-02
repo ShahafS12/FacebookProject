@@ -95,24 +95,22 @@ bool Pages::isFan(Friend* const _friend)
 
 void Pages::removeFan(Friend* const _friend, bool remover)
 {
-	bool foundFan = false;
+	bool foundFriend = false;
 	for (int i = 0; i < numOfFans; i++)
 	{
 		if (_friend == fans[i])
 		{
-			foundFan = true;
-			if (i == numOfFans - 1)
-				delete fans[i];
-			else
+			foundFriend = true;
+			for (int j = i; j < numOfFans - 1; j++)
 			{
-				fans[i] = fans[numOfFans - 1];
-				delete fans[numOfFans - 1];
+				fans[j] = fans[j + 1];
 			}
 			numOfFans--;
+			if (remover)
+				_friend->unlikePage(this, false);
+			return;
 		}
-		if (remover)
-			_friend->unlikePage(this, false);
+		if (!foundFriend)
+			cout << "User is not a fan of this page" << endl;
 	}
-	if (foundFan == false)
-		cout << "User was not in friend list" << endl;
 }
