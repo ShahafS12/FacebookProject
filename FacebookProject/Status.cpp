@@ -1,4 +1,5 @@
 #include "Status.h"
+using namespace std;
 
 Status::Status(char* _text) : text(_strdup(_text)) {}
 
