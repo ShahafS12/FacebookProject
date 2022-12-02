@@ -82,27 +82,25 @@ void Friend::removeFriend(Friend* _friend, bool remover)
 }
 
 void Friend::unlikePage(Pages* _toUnlike, bool remover)
-{//checks if a user likes a page, unlikes it if he does
+{
 	bool foundPage = false;
 	for (int i = 0; i < numOfLikedPages; i++)
 	{
 		if (_toUnlike == likedPages[i])
 		{
 			foundPage = true;
-			if (i == numOfLikedPages - 1)
-				delete likedPages[i];
-			else
+			for (int j = i; j < numOfLikedPages - 1; j++)
 			{
-				likedPages[i] = likedPages[numOfFriends - 1];
-				delete likedPages[numOfLikedPages - 1];
+				likedPages[j] = likedPages[j + 1];
 			}
 			numOfLikedPages--;
+			if (remover)
+				_toUnlike->removeFan(this, false);
+			return;
 		}
-		if (remover)
-			_toUnlike->removeFan(this, false);
 	}
-	if (foundPage == false)
-		cout << "page was not previously liked" << endl;
+	if(!foundPage)
+		cout << "Page not prevously liked" << endl;
 }
 
 void Friend::likePage(Pages* const _toLike, bool sender)
