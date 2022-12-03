@@ -62,20 +62,15 @@ void Friend::removeFriend(Friend* _friend, bool remover)
 	bool foundFriend = false;
 	for (int i = 0; i < numOfFriends; i++)
 	{
-		if (_friend == friends[i])
+		foundFriend = true;
+		for (int j = i; j < numOfFriends - 1; j++)
 		{
-			foundFriend = true;
-			if (i == numOfFriends - 1)
-				delete friends[i];
-			else
-			{
-				friends[i] = friends[numOfFriends - 1];
-				delete friends[numOfFriends - 1];
-			}
-			numOfFriends--;
+			friends[j] = friends[j + 1];
 		}
+		numOfFriends--;
 		if (remover)
 			_friend->removeFriend(this, false);
+		return;
 	}
 	if (foundFriend == false)
 		cout << "User was not in friend list" << endl;
@@ -171,7 +166,7 @@ void Friend::checkSizeFriends()
 
 void Friend::PrintFriendStatus() {
 	// print the statuses
-	for (int i = 0; i < numOfStatus; i++)
+	for (int i = numOfStatus-1; i >= 0; i--)
 		this->statuses[i]->printStatus();
 }
 

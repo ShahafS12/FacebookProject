@@ -25,6 +25,7 @@ void Facebook::addFanPage() {
 	// Add fan page to pages on facebook
 	char name[MAX_PAGE_NAME];
 	cout << "Enter name of fan page: " << endl;
+	char a = getchar(); // The only way cin working after...
 	cin.getline(name, MAX_PAGE_NAME);
 	Pages* p = new Pages(name);
 	checkSizePages();
@@ -145,7 +146,8 @@ void Facebook::menu()
 	cin >> action;
 	preformAction(action);
 	cout << "\n" << endl;
-	menu();
+	if (action != 15)//15 means exit
+		menu();
 }
 
 void Facebook::printMenu()
