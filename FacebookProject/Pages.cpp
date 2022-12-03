@@ -56,7 +56,7 @@ void Pages::getPageName() {
 }
 
 void Pages::chekSizeFans()
-{
+{ 	// check the size of the array - if needed allocate more 
 	if (this->phyS_fans == this->numOfFans)
 	{
 		this->phyS_fans *= 2;
@@ -84,7 +84,7 @@ void Pages::addFan(Friend* const _friend, bool sender)
 }
 
 bool Pages::isFan(Friend* const _friend)
-{
+{	// check if the friend is a fan and return boolean
 	for (int i = 0; i < numOfFans; i++)
 	{
 		if (_friend == fans[i])
@@ -94,7 +94,7 @@ bool Pages::isFan(Friend* const _friend)
 }
 
 void Pages::removeFan(Friend* const _friend, bool remover)
-{
+{	// Remove a fan from a page
 	bool foundFriend = false;
 	for (int i = 0; i < numOfFans; i++)
 	{

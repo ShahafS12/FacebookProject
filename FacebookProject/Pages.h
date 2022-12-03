@@ -1,6 +1,7 @@
 #pragma once
 #include "Friend.h"
 #include "Status.h"
+using namespace std;
 
 const int MAX_PAGE_NAME = 30;
 
@@ -26,7 +27,7 @@ public:
 	void showMyFans();
 	void getPageName();
 	void addFan(Friend* const _friend, bool sender);
-	void removeFan(Friend* const _friend, bool sender); // ** ASK Shahaf about const **
+	void removeFan(Friend* const _friend, bool sender);
 	~Pages();
 private:
 	bool isFan(Friend* const _friend);

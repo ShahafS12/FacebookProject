@@ -1,4 +1,5 @@
 #include "Facebook.h"
+using namespace std;
 
 void Facebook::addUser()
 { 	// Add user to facebook
@@ -157,7 +158,7 @@ void Facebook::printMenu()
 	cout << "2-add new fan page" << endl;
 	cout << "3-add new status to a friend" << endl;
 	cout << "4-add new status to a page" << endl;
-	cout << "5-show friend 10 recent statuses" << endl;
+	cout << "5-show my friends 10 recent statuses" << endl;
 	cout << "6-show page's statuses" << endl;
 	cout << "7-show friend's feed" << endl;
 	cout << "8-add a friend" << endl;
@@ -212,7 +213,7 @@ void Facebook::preformAction(int actionCode)
 		friends[user - 1]->PrintFriendStatus();
 		break;
 	case 8:
-		cout << "Choose two users to connect" << endl;
+		cout << "Choose two users to connect - Type both numbers" << endl;
 		showMembers();
 		cin >> user;
 		cin >> secondUser;
@@ -262,12 +263,12 @@ void Facebook::preformAction(int actionCode)
 		pages[page - 1]->showMyFans();
 		break;
 	case 15:
-		exit();
+		leaveFacebook();
 		break;
 	}
 }
 
-void Facebook::exit() {
+void Facebook::leaveFacebook() {
 	// Delete all the allocations
 	for (int i = 0; i < numOfFriends; i++)
 			delete (friends[i]);
@@ -276,4 +277,6 @@ void Facebook::exit() {
 	for (int i = 0; i < numOfPages; i++)
 		delete (pages[i]);
 	delete[] pages;
+
+	exit(1);
 }
