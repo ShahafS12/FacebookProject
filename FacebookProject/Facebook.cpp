@@ -2,25 +2,43 @@
 using namespace std;
 
 void Facebook::addUser()
-{ 	// Add user to facebook
+{
 	char fname[MAX_NAME], lname[MAX_NAME];
-	short int day, month, year;
-
+	Date d;
 	cout << "Enter first name" << endl;
 	cin >> fname;
 	cout << "Enter last name" << endl;
 	cin >> lname;
 	cout << "Enter your date of birth" << endl;
-	cout << "Day:"; cin >> day;
-	cout << "Month:"; cin >> month;
-	cout << "Year:"; cin >> year;
 	char a = getchar(); // The only way cin working after...
-	Date d(day, month, year);
+	try
+	{
+		d = addDate();
+	}
+	catch (const char* msg)
+	{
+		cout << msg << " try again:" << endl;
+		d = addDate();
+	}
 	Friend* f = new Friend(fname, lname, d);
 	checkSizeFriends();
 	friends[numOfFriends] = f; // constracor copy 
 	numOfFriends++;
 }
+
+Date Facebook::addDate()
+{
+	short int day, month, year;
+	cout << "Day:"; cin >> day;
+	cout << "Month:"; cin >> month;
+	cout << "Year:"; cin >> year;
+	if (day < 1 || day > 31 || month < 1 || month > 12 || year < 1900 || year > 2017)
+		throw "Invalid date";
+	Date res(day, month, year);
+	return res;
+}
+
+
 
 void Facebook::addFanPage() {
 	// Add fan page to pages on facebook
