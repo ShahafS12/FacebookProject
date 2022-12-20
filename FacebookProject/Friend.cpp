@@ -176,6 +176,16 @@ void Friend::getFriendName() {
 	cout << this->fname << " " << this->lname << endl;
 }
 
+char* Friend::getFName()
+{
+	return this->fname;
+}
+
+char* Friend::getLName()
+{
+	return this->lname;
+}
+
 void Friend::showMyFriends() {
 	// Print all my friends
 	for (int i = 0; i < numOfFriends; i++) {

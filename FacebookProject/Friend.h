@@ -41,6 +41,8 @@ public:
 	void mostUpdatedStatuses();
 	void likePage(Pages* const _toLike, bool sender);
 	void unlikePage(Pages* _toUnlike, bool sender);
+	char* getFName();
+	char* getLName();
 private:
 	bool checkIfFriends(Friend* const _friend);
 	bool pageLiked(Pages* const _toLike);

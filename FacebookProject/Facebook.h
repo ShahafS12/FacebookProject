@@ -25,4 +25,6 @@ private:
 	void preformAction(int actionCode);
 	void printMenu();
 	Date addDate();
+	bool nameExists(char* fname, char* lname);
+	void addName(char* fname, char* lname);
 };

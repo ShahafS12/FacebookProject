@@ -5,10 +5,15 @@ void Facebook::addUser()
 {
 	char fname[MAX_NAME], lname[MAX_NAME];
 	Date d;
-	cout << "Enter first name" << endl;
-	cin >> fname;
-	cout << "Enter last name" << endl;
-	cin >> lname;
+	try
+	{
+		addName(fname, lname);
+	}
+	catch (const char* msg)
+	{
+		cout << msg << " try again:" << endl;
+		addName(fname, lname);
+	}
 	cout << "Enter your date of birth" << endl;
 	char a = getchar(); // The only way cin working after...
 	try
@@ -38,7 +43,25 @@ Date Facebook::addDate()
 	return res;
 }
 
+void Facebook::addName(char* fname,char* lname)
+{
+	cout << "Enter first name" << endl;
+	cin >> fname;
+	cout << "Enter last name" << endl;
+	cin >> lname;
+	if (nameExists(fname, lname))
+		throw "Name already in use";
+}
 
+bool Facebook::nameExists(char* fname, char* lname)
+{
+	for (int i = 0; i < this->numOfFriends; i++)
+	{
+		if(!strcmp(fname,this->friends[i]->getFName())&& !strcmp(lname, this->friends[i]->getLName()))
+			return true;
+	}
+	return false;
+}
 
 void Facebook::addFanPage() {
 	// Add fan page to pages on facebook
