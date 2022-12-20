@@ -212,6 +212,13 @@ void Facebook::printMenu()
 	cout << "15-exit\n" << endl;
 }
 
+void Facebook::checkUsersExist(int user, int secondUser)
+{
+	// check if the users exist
+	if (user > numOfFriends || user < 1 || secondUser > numOfFriends || secondUser < 1)
+		throw "invalid values";
+}
+
 void Facebook::preformAction(int actionCode)
 {//preforms action according to chosen action code
 	int user,page,secondUser;
@@ -258,7 +265,15 @@ void Facebook::preformAction(int actionCode)
 		showMembers();
 		cin >> user;
 		cin >> secondUser;
-		friends[user - 1]->addFriend(friends[secondUser - 1], true);
+		try
+		{
+			checkUsersExist(user, secondUser);
+			friends[user - 1]->addFriend(friends[secondUser - 1], true);
+		}
+		catch (const char* msg)
+		{
+			cout << msg << endl;
+		}
 		break;
 	case 9:
 		cout << "Choose two users remove friendship" << endl;

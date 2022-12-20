@@ -44,6 +44,6 @@ public:
 	char* getFName();
 	char* getLName();
 private:
-	bool checkIfFriends(Friend* const _friend);
+	void checkIfValidAdd(Friend* const _friend);
 	bool pageLiked(Pages* const _toLike);
 };

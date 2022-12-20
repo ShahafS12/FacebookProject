@@ -35,28 +35,30 @@ void Friend::addTwoDefaultStatus()
 
 void Friend::addFriend(Friend* _friend, bool sender)
 {// connects between two users after checking they werent friends before
-	bool alreadyFriends = checkIfFriends(_friend);
-	if (!alreadyFriends)
+	if (this == _friend)
+		throw "User can't be friend with itself";
+	for (int i = 0; i < numOfFriends; i++)
 	{
+		if (_friend == friends[i])
+			throw "Users already friends";
+	}
 		checkSizeFriends();
 		friends[numOfFriends] = _friend;
 		if (sender)
 			_friend->addFriend(this, false);
 		numOfFriends++;
-	}
-	else
-		cout << "Users already friends" << endl;
 }
 
-bool Friend::checkIfFriends(Friend* const _friend)
+/*void Friend::checkIfValidAdd(Friend* const _friend)
 {//checks if two users are friends
+	if (this == _friend)
+		throw "User can't be friend with itself";
 	for (int i = 0; i < numOfFriends; i++)
 	{
 		if (_friend == friends[i])
-			return true;
+			throw "Users already friends";
 	}
-	return false;
-}
+}*/
 
 void Friend::removeFriend(Friend* _friend, bool remover)
 {// checks if two users are friends, removes friendship if they are

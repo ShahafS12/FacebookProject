@@ -27,4 +27,5 @@ private:
 	Date addDate();
 	bool nameExists(char* fname, char* lname);
 	void addName(char* fname, char* lname);
+	void checkUsersExist(int user, int secondUser);
 };
