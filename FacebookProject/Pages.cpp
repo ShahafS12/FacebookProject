@@ -80,7 +80,7 @@ void Pages::addFan(Friend* const _friend, bool sender)
 		numOfFans++;
 	}
 	else
-		cout << "User already likes this page" << endl;
+		throw "User already likes this page";
 }
 
 bool Pages::isFan(Friend* const _friend)
@@ -111,6 +111,6 @@ void Pages::removeFan(Friend* const _friend, bool remover)
 			return;
 		}
 		if (!foundFriend)
-			cout << "User is not a fan of this page" << endl;
+			throw "User is not a fan of this page";
 	}
 }
