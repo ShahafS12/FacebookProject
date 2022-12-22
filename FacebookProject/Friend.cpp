@@ -49,34 +49,26 @@ void Friend::addFriend(Friend* _friend, bool sender)
 		numOfFriends++;
 }
 
-/*void Friend::checkIfValidAdd(Friend* const _friend)
-{//checks if two users are friends
-	if (this == _friend)
-		throw "User can't be friend with itself";
-	for (int i = 0; i < numOfFriends; i++)
-	{
-		if (_friend == friends[i])
-			throw "Users already friends";
-	}
-}*/
-
 void Friend::removeFriend(Friend* _friend, bool remover)
 {// checks if two users are friends, removes friendship if they are
 	bool foundFriend = false;
 	for (int i = 0; i < numOfFriends; i++)
 	{
-		foundFriend = true;
-		for (int j = i; j < numOfFriends - 1; j++)
+		if (_friend == friends[i])
 		{
-			friends[j] = friends[j + 1];
+			foundFriend = true;
+			for (int j = i; j < numOfFriends - 1; j++)
+			{
+				friends[j] = friends[j+1];
+			}
+			numOfFriends--;
+			if (remover)
+				_friend->removeFriend(this, false);
+			return;
 		}
-		numOfFriends--;
-		if (remover)
-			_friend->removeFriend(this, false);
-		return;
 	}
 	if (foundFriend == false)
-		cout << "User was not in friend list" << endl;
+		throw "User was not in friend list";
 }
 
 void Friend::unlikePage(Pages* _toUnlike, bool remover)
@@ -97,8 +89,8 @@ void Friend::unlikePage(Pages* _toUnlike, bool remover)
 			return;
 		}
 	}
-	if(!foundPage)
-		cout << "Page not prevously liked" << endl;
+	if (!foundPage)
+		throw "Page not prevously liked";
 }
 
 void Friend::likePage(Pages* const _toLike, bool sender)
@@ -113,7 +105,7 @@ void Friend::likePage(Pages* const _toLike, bool sender)
 		numOfLikedPages++;
 	}
 	else
-		cout << "Page already liked" << endl;
+		throw "Page already liked";
 }
 
 bool Friend::pageLiked(Pages* const _toLike)
