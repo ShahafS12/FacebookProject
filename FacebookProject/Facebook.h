@@ -27,5 +27,6 @@ private:
 	Date addDate();
 	bool nameExists(char* fname, char* lname);
 	void addName(char* fname, char* lname);
-	void checkUsersExist(int user, int secondUser);
+	void checkUsersExist(int user);
+	void checkPageExist(int page);
 };

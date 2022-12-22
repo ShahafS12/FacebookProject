@@ -212,10 +212,17 @@ void Facebook::printMenu()
 	cout << "15-exit\n" << endl;
 }
 
-void Facebook::checkUsersExist(int user, int secondUser)
+void Facebook::checkUsersExist(int user)
 {
 	// check if the users exist
-	if (user > numOfFriends || user < 1 || secondUser > numOfFriends || secondUser < 1)
+	if (user > numOfFriends || user < 1 )
+		throw "invalid values";
+}
+
+void Facebook::checkPageExist(int page)
+{
+	// check if the users exist
+	if (page > numOfPages || page < 1)
 		throw "invalid values";
 }
 
@@ -234,31 +241,71 @@ void Facebook::preformAction(int actionCode)
 		cout << "Choose a user" << endl;
 		showMembers();
 		cin >> user;
-		friends[user - 1]->addStatus();
+		try
+		{
+			checkUsersExist(user);
+			friends[user - 1]->addStatus();
+		}
+		catch (const char* msg)
+		{
+			cout << msg << endl;
+		}
 		break;
 	case 4:
 		cout << "Choose a page" << endl;
 		showPages();
 		cin >> page;
-		pages[page - 1]->addStatus();
+		try
+		{
+			checkPageExist(page);
+			pages[page - 1]->addStatus();
+		}
+		catch (const char* msg)
+		{
+			cout << msg << endl;
+		}
 		break;
 	case 5:
 		cout << "Choose a user" << endl;
 		showMembers();
 		cin >> user;
-		friends[user - 1]->mostUpdatedStatuses();
+		try
+		{
+			checkUsersExist(user);
+			friends[user - 1]->mostUpdatedStatuses();
+		}
+		catch (const char* msg)
+		{
+			cout << msg << endl;
+		}
 		break;
 	case 6:
 		cout << "Choose a page" << endl;
 		showPages();
 		cin >> page;
-		pages[page - 1]->PrintPagesStatus();
+		try
+		{
+			checkPageExist(page);
+			pages[page - 1]->PrintPagesStatus();
+		}
+		catch (const char* msg)
+		{
+			cout << msg << endl;
+		}
 		break;
 	case 7:
 		cout << "Choose a user" << endl;
 		showMembers();
 		cin >> user;
-		friends[user - 1]->PrintFriendStatus();
+		try
+		{
+			checkUsersExist(user);
+			friends[user - 1]->PrintFriendStatus();
+		}
+		catch (const char* msg)
+		{
+			cout << msg << endl;
+		}
 		break;
 	case 8:
 		cout << "Choose two users to connect - Type both numbers" << endl;
@@ -267,7 +314,8 @@ void Facebook::preformAction(int actionCode)
 		cin >> secondUser;
 		try
 		{
-			checkUsersExist(user, secondUser);
+			checkUsersExist(secondUser);
+			checkUsersExist(user);
 			friends[user - 1]->addFriend(friends[secondUser - 1], true);
 		}
 		catch (const char* msg)
@@ -280,25 +328,52 @@ void Facebook::preformAction(int actionCode)
 		showMembers();
 		cin >> user;
 		cin >> secondUser;
-		friends[user - 1]->removeFriend(friends[secondUser - 1], true);
+		try
+		{
+			checkUsersExist(secondUser);
+			checkUsersExist(user);
+			friends[user - 1]->removeFriend(friends[secondUser - 1], true);
+		}
+		catch (const char* msg)
+		{
+			cout << msg << endl;
+		}
 		break;
 	case 10:
 		cout << "Choose a page to like" << endl;
 		showPages();
 		cin >> page;
-		cout << "choose a user to like chosen page" << endl;
-		showMembers();
-		cin >> user;
-		pages[page - 1]->addFan(friends[user - 1], true);
+		try
+		{
+			checkPageExist(page);
+			cout << "choose a user to like chosen page" << endl;
+			showMembers();
+			cin >> user;
+			checkUsersExist(user);
+			pages[page - 1]->addFan(friends[user - 1], true);
+		}
+		catch (const char* msg)
+		{
+			cout << msg << endl;
+		}
 		break;
 	case 11:
 		cout << "Choose a page to unlike" << endl;
 		showPages();
 		cin >> page;
-		cout << "choose a user to unlike chosen page" << endl;
-		showMembers();
-		cin >> user;
-		pages[page - 1]->removeFan(friends[user - 1], true);
+		try
+		{
+			checkPageExist(page);
+			cout << "choose a user to unlike chosen page" << endl;
+			showMembers();
+			cin >> user;
+			checkUsersExist(user);
+			pages[page - 1]->removeFan(friends[user - 1], true);
+		}
+		catch (const char* msg)
+		{
+			cout << msg << endl;
+		}
 		break;
 	case 12:
 		cout << "Users:" << endl;
@@ -310,13 +385,29 @@ void Facebook::preformAction(int actionCode)
 		cout << "Choose a user" << endl;
 		showMembers();
 		cin >> user;
-		friends[user - 1]->showMyFriends();
+		try
+		{
+			checkUsersExist(user);
+			friends[user - 1]->showMyFriends();
+		}
+		catch (const char* msg)
+		{
+			cout << msg << endl;
+		}
 		break;
 	case 14:
 		cout << "Choose a page" << endl;
 		showPages();
 		cin >> page;
-		pages[page - 1]->showMyFans();
+		try
+		{
+			checkPageExist(page);
+			pages[page - 1]->showMyFans();
+		}
+		catch (const char* msg)
+		{
+			cout << msg << endl;
+		}
 		break;
 	case 15:
 		leaveFacebook();
