@@ -291,6 +291,8 @@ void Facebook::preformAction(int actionCode)
 		case 15:
 			leaveFacebook();
 			break;
+		default:
+			cout << "invalid action";
 		}
 	}
 	catch (const char* msg)
