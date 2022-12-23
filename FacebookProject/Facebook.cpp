@@ -68,14 +68,14 @@ void Facebook::addFanPage() {
 	char a = getchar(); // The only way cin working after...
 	cin.getline(name, MAX_PAGE_NAME);
 	Pages* p = new Pages(name);
-	pages.push_back(p);
+	pagesLiked.push_back(p);
 }
 
 
 void Facebook::addDefaultData()
 { // add deafalt data to facebook
 	addDefaultPages();
-	addDefaultFriends(pages[0],pages[1],pages[2]);
+	addDefaultFriends(pagesLiked[0],pagesLiked[1],pagesLiked[2]);
 }
 
 void Facebook::addDefaultPages()
@@ -84,11 +84,11 @@ void Facebook::addDefaultPages()
 	char pname2[MAX_PAGE_NAME] = "Hapshuta";
 	char pname3[MAX_PAGE_NAME] = "Lemons cummunity";
 	Pages* p1 = new Pages(pname1);
-	pages.push_back(p1);
+	pagesLiked.push_back(p1);
 	Pages* p2 = new Pages(pname2);
-	pages.push_back(p2);
+	pagesLiked.push_back(p2);
 	Pages* p3 = new Pages(pname3);
-	pages.push_back(p3);
+	pagesLiked.push_back(p3);
 }
 
 void Facebook::addDefaultFriends(Pages* p1, Pages* p2, Pages* p3)
@@ -129,9 +129,9 @@ void Facebook::showMembers() {
 
 void Facebook::showPages() {
 	// Print all pages in Facebook
-	for (int i = 0; i < pages.size(); i++) {
+	for (int i = 0; i < pagesLiked.size(); i++) {
 		cout << i + 1 << "-";
-		pages[i]->getPageName();
+		pagesLiked[i]->getPageName();
 	}
 }
 
@@ -176,7 +176,7 @@ void Facebook::checkUsersExist(int user)
 void Facebook::checkPageExist(int page)
 {
 	// check if the users exist
-	if (page > pages.size() || page < 1)
+	if (page > pagesLiked.size() || page < 1)
 		throw "invalid values";
 }
 
@@ -205,7 +205,7 @@ void Facebook::preformAction(int actionCode)
 			showPages();
 			cin >> page;
 			checkPageExist(page);
-			pages[page - 1]->addStatus();
+			pagesLiked[page - 1]->addStatus();
 			break;
 		case 5:
 			cout << "Choose a user" << endl;
@@ -219,7 +219,7 @@ void Facebook::preformAction(int actionCode)
 			showPages();
 			cin >> page;
 			checkPageExist(page);
-			pages[page - 1]->PrintPagesStatus();
+			pagesLiked[page - 1]->PrintPagesStatus();
 			break;
 		case 7:
 			cout << "Choose a user" << endl;
@@ -255,7 +255,7 @@ void Facebook::preformAction(int actionCode)
 			showMembers();
 			cin >> user;
 			checkUsersExist(user);
-			pages[page - 1]->addFan(friends[user - 1], true);
+			pagesLiked[page - 1]->addFan(friends[user - 1], true);
 			break;
 		case 11:
 			cout << "Choose a page to unlike" << endl;
@@ -266,7 +266,7 @@ void Facebook::preformAction(int actionCode)
 			showMembers();
 			cin >> user;
 			checkUsersExist(user);
-			pages[page - 1]->removeFan(friends[user - 1], true);
+			pagesLiked[page - 1]->removeFan(friends[user - 1], true);
 			break;
 		case 12:
 			cout << "Users:" << endl;
@@ -286,7 +286,7 @@ void Facebook::preformAction(int actionCode)
 			showPages();
 			cin >> page;
 			checkPageExist(page);
-			pages[page - 1]->showMyFans();
+			pagesLiked[page - 1]->showMyFans();
 			break;
 		case 15:
 			leaveFacebook();
@@ -304,8 +304,8 @@ void Facebook::leaveFacebook() {
 	for (int i = 0; i < friends.size(); i++)
 			delete (friends[i]);
 
-	for (int i = 0; i < pages.size(); i++)
-		delete (pages[i]);
+	for (int i = 0; i < pagesLiked.size(); i++)
+		delete (pagesLiked[i]);
 
 	exit(1);
 }

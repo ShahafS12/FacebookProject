@@ -4,9 +4,8 @@ Pages::Pages(char* _name) : name(_strdup(_name)) {}
 
 Pages::~Pages() {
 	// delete constactor
-	for (int i = 0; i < numOfStatus; i++)
+	for (int i = 0; i < status.size(); i++)
 		delete (status[i]);
-	delete[] status;
 }
 
 void Pages::addStatus() {
@@ -16,36 +15,18 @@ void Pages::addStatus() {
 	cin.ignore();
 	cin.getline(text, MAX_STATUS);
 	Status* s = new Status(text);
-	checkSizeStatus();
-	status[numOfStatus] = s;
-	numOfStatus++;
-}
-
-void Pages::checkSizeStatus() {
-	// check the size of the array - if needed allocate more 
-
-	if (this->phyS_status == this->numOfStatus)
-	{
-		this->phyS_status *= 2;
-		Status** tmp = new Status * [phyS_status];
-
-		for (int i = 0; i < numOfStatus; i++)
-			tmp[i] = status[i];
-
-		delete[] status;
-		status = tmp;
-	}
+	status.push_back(s);
 }
 
 void Pages::PrintPagesStatus() {
 	// Print the page statuses
-	for (int i = 0; i < numOfStatus; i++)
+	for (int i = 0; i < status.size(); i++)
 		this->status[i]->printStatus();
 }
 
 void Pages::showMyFans() {
 	// print all the fans (Friends)
-	for (int i = 0; i < numOfFans; i++) {
+	for (int i = 0; i < fans.size(); i++) {
 		fans[i]->getFriendName();
 	}
 }
@@ -55,29 +36,14 @@ void Pages::getPageName() {
 	cout << this->name << endl;
 }
 
-void Pages::chekSizeFans()
-{ 	// check the size of the array - if needed allocate more 
-	if (this->phyS_fans == this->numOfFans)
-	{
-		this->phyS_fans *= 2;
-		Friend** tmp = new Friend * [phyS_fans];
-		for (int i = 0; i < numOfFans; i++)
-			tmp[i] = fans[i];
-		delete[] fans;
-		fans = tmp;
-	}
-}
-
 void Pages::addFan(Friend* const _friend, bool sender)
 {//check if alrady a fan
 	bool alreadyFan = isFan(_friend);
 	if (!alreadyFan)
 	{
-		chekSizeFans();
-		fans[numOfFans] = _friend;
+		fans.push_back(_friend);
 		if (sender)
 			_friend->likePage(this, false);
-		numOfFans++;
 	}
 	else
 		throw "User already likes this page";
@@ -85,7 +51,7 @@ void Pages::addFan(Friend* const _friend, bool sender)
 
 bool Pages::isFan(Friend* const _friend)
 {	// check if the friend is a fan and return boolean
-	for (int i = 0; i < numOfFans; i++)
+	for (int i = 0; i < fans.size(); i++)
 	{
 		if (_friend == fans[i])
 			return true;
@@ -96,16 +62,12 @@ bool Pages::isFan(Friend* const _friend)
 void Pages::removeFan(Friend* const _friend, bool remover)
 {	// Remove a fan from a page
 	bool foundFriend = false;
-	for (int i = 0; i < numOfFans; i++)
+	for (int i = 0; i < fans.size(); i++)
 	{
 		if (_friend == fans[i])
 		{
 			foundFriend = true;
-			for (int j = i; j < numOfFans - 1; j++)
-			{
-				fans[j] = fans[j + 1];
-			}
-			numOfFans--;
+			fans.erase(fans.begin() + i);
 			if (remover)
 				_friend->unlikePage(this, false);
 			return;

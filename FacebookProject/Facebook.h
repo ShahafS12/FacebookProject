@@ -4,7 +4,7 @@
 class Facebook {
 private:
 	vector<Friend*> friends;
-	vector<Pages*> pages;
+	vector<Pages*> pagesLiked;
 public:
 	Facebook() {};
 	void addDefaultData();

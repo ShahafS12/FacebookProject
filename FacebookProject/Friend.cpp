@@ -10,9 +10,7 @@ void Friend::addStatus() {
 	cin.ignore();
 	cin.getline(text, MAX_STATUS);
 	Status* s = new Status(text);
-	checkSizeStatus();
-	statuses[numOfStatus] = s;
-	numOfStatus++;
+	statuses.push_back(s);
 }
 
 void Friend::addTwoDefaultStatus()
@@ -21,47 +19,37 @@ void Friend::addTwoDefaultStatus()
 	strcpy(text1, fname);
 	strcat(text1, "'s first status");
 	Status* s1 = new Status(text1);
-	checkSizeStatus();
-	statuses[numOfStatus] = s1;
-	numOfStatus++;
+	statuses.push_back(s1);
 	char text2[MAX_STATUS];
 	strcpy(text2, fname);
 	strcat(text2, "'s second status");
 	Status* s2 = new Status(text2);
-	checkSizeStatus();
-	statuses[numOfStatus] = s2;
-	numOfStatus++;
+	statuses.push_back(s2);
 }
 
 void Friend::addFriend(Friend* _friend, bool sender)
 {// connects between two users after checking they werent friends before
 	if (this == _friend)
 		throw "User can't be friend with itself";
-	for (int i = 0; i < numOfFriends; i++)
+	for (int i = 0; i < friends.size(); i++)
 	{
 		if (_friend == friends[i])
 			throw "Users already friends";
 	}
-		checkSizeFriends();
-		friends[numOfFriends] = _friend;
+		friends.push_back(_friend);
 		if (sender)
 			_friend->addFriend(this, false);
-		numOfFriends++;
 }
 
 void Friend::removeFriend(Friend* _friend, bool remover)
 {// checks if two users are friends, removes friendship if they are
 	bool foundFriend = false;
-	for (int i = 0; i < numOfFriends; i++)
+	for (int i = 0; i < friends.size(); i++)
 	{
 		if (_friend == friends[i])
 		{
 			foundFriend = true;
-			for (int j = i; j < numOfFriends - 1; j++)
-			{
-				friends[j] = friends[j+1];
-			}
-			numOfFriends--;
+			friends.erase(friends.begin() + i);
 			if (remover)
 				_friend->removeFriend(this, false);
 			return;
@@ -74,16 +62,12 @@ void Friend::removeFriend(Friend* _friend, bool remover)
 void Friend::unlikePage(Pages* _toUnlike, bool remover)
 {
 	bool foundPage = false;
-	for (int i = 0; i < numOfLikedPages; i++)
+	for (int i = 0; i < likedPages.size(); i++)
 	{
 		if (_toUnlike == likedPages[i])
 		{
 			foundPage = true;
-			for (int j = i; j < numOfLikedPages - 1; j++)
-			{
-				likedPages[j] = likedPages[j + 1];
-			}
-			numOfLikedPages--;
+			likedPages.erase(likedPages.begin() + i);
 			if (remover)
 				_toUnlike->removeFan(this, false);
 			return;
@@ -98,19 +82,17 @@ void Friend::likePage(Pages* const _toLike, bool sender)
 	bool alreadyLiked = pageLiked(_toLike);
 	if (!alreadyLiked)
 	{
-		checkSizePages();
-		likedPages[numOfLikedPages] = _toLike;
+		likedPages.push_back(_toLike);
 		if (sender)
 			_toLike->addFan(this, false);
-		numOfLikedPages++;
 	}
 	else
 		throw "Page already liked";
 }
 
 bool Friend::pageLiked(Pages* const _toLike)
-{
-	for (int i = 0; i < numOfFriends; i++)
+{//checks if user already like this pages
+	for (int i = 0; i < likedPages.size(); i++)
 	{
 		if (_toLike == likedPages[i])
 			return true;
@@ -118,50 +100,9 @@ bool Friend::pageLiked(Pages* const _toLike)
 	return false;
 }
 
-void Friend::checkSizeStatus() {
-	// check the size of the array - if needed allocate more 
-	if (this->phyS_status == this->numOfStatus)
-	{
-		this->phyS_status *= 2;
-		Status** tmp = new Status * [phyS_status];
-		for (int i = 0; i < numOfStatus; i++)
-			tmp[i] = statuses[i];
-		delete[] statuses;
-		statuses = tmp;
-	}
-}
-
-void Friend::checkSizePages() {
-	// check the size of the array - if needed allocate more 
-
-	if (this->phyS_pages == this->numOfLikedPages)
-	{
-		this->phyS_pages *= 2;
-		Pages** tmp = new Pages * [phyS_pages];
-		for (int i = 0; i < numOfLikedPages; i++)
-			tmp[i] = likedPages[i];
-		delete[] likedPages;
-		likedPages = tmp;
-	}
-}
-
-void Friend::checkSizeFriends()
-{ 	// check the size of the array - if needed allocate more 
-
-	if (this->phyS_friends == this->numOfFriends)
-	{
-		this->phyS_friends *= 2;
-		Friend** tmp = new Friend * [phyS_friends];
-		for (int i = 0; i < numOfFriends; i++)
-			tmp[i] = friends[i];
-		delete[] friends;
-		friends = tmp;
-	}
-}
-
 void Friend::PrintFriendStatus() {
 	// print the statuses
-	for (int i = numOfStatus-1; i >= 0; i--)
+	for (int i = statuses.size() - 1; i >= 0; i--)
 		this->statuses[i]->printStatus();
 }
 
@@ -182,7 +123,7 @@ char* Friend::getLName()
 
 void Friend::showMyFriends() {
 	// Print all my friends
-	for (int i = 0; i < numOfFriends; i++) {
+	for (int i = 0; i < friends.size(); i++) {
 		friends[i]->getFriendName();
 	}
 }
@@ -190,8 +131,8 @@ void Friend::showMyFriends() {
 void Friend::mostUpdatedStatuses() {
 	// print 10 most updated statuses of all friends
 	int num, x = 10;
-	for (int i = 0; i < numOfFriends; i++) {
-		num = friends[i]->numOfStatus -1;
+	for (int i = 0; i < friends.size(); i++) {
+		num = friends[i]->statuses.size() - 1;
 		for (int j = num; j>=0 && x>=0; j-- , x--)
 			friends[i]->statuses[j]->printStatus();
 	}
@@ -199,9 +140,6 @@ void Friend::mostUpdatedStatuses() {
 
 Friend::~Friend() {
 	// delete constractor
-	for (int i = 0; i < numOfStatus; i++)
+	for (int i = 0; i < statuses.size(); i++)
 			delete (statuses[i]);
-	delete[] statuses;
-
-	delete[] friends;
 }
