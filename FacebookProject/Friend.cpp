@@ -1,7 +1,7 @@
 using namespace std;
 #include "Friend.h"
 
-Friend::Friend(char* _fname, char* _lname, Date _dob) : fname(_strdup(_fname)), lname(_strdup(_lname)), dob(_dob) {}
+Friend::Friend(string _fname, string _lname, Date _dob) : fname(_fname), lname(_lname), dob(_dob) {}
 
 void Friend::addStatus() {
 	// Add status to a user
@@ -15,14 +15,14 @@ void Friend::addStatus() {
 
 void Friend::addTwoDefaultStatus()
 {  // add the default statuses
-	char text1[MAX_STATUS];
-	strcpy(text1, fname);
-	strcat(text1, "'s first status");
+	string text1;
+	text1 = fname;
+	text1 += "'s first status";
 	Status* s1 = new Status(text1);
 	statuses.push_back(s1);
-	char text2[MAX_STATUS];
-	strcpy(text2, fname);
-	strcat(text2, "'s second status");
+	string text2;
+	text2 = fname;
+	text2 += "'s first status";
 	Status* s2 = new Status(text2);
 	statuses.push_back(s2);
 }
@@ -39,6 +39,12 @@ void Friend::addFriend(Friend* _friend, bool sender)
 		friends.push_back(_friend);
 		if (sender)
 			_friend->addFriend(this, false);
+}
+
+Friend& Friend::operator+=(Friend&& _friend)
+{
+	this->addFriend(&_friend, true);
+	return *this;
 }
 
 void Friend::removeFriend(Friend* _friend, bool remover)
@@ -111,12 +117,12 @@ void Friend::getFriendName() {
 	cout << this->fname << " " << this->lname << endl;
 }
 
-char* Friend::getFName()
+string Friend::getFName()
 {
 	return this->fname;
 }
 
-char* Friend::getLName()
+string Friend::getLName()
 {
 	return this->lname;
 }

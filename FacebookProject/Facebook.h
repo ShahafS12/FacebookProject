@@ -1,5 +1,7 @@
 #include "Pages.h"
 #include <vector>
+#include <string>
+using namespace std;
 
 class Facebook {
 private:
@@ -20,8 +22,8 @@ private:
 	void preformAction(int actionCode);
 	void printMenu();
 	Date addDate();
-	bool nameExists(char* fname, char* lname);
-	void addName(char* fname, char* lname);
+	bool nameExists(string fname, string lname);
+	void addName(string fname, string lname);
 	void checkUsersExist(int user);
 	void checkPageExist(int page);
 };

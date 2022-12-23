@@ -1,16 +1,18 @@
 #define _CRT_SECURE_NO_WARNINGS
 #pragma once
 #include <iostream>
+#include <string>
 #include "Date.h"
 #include "Time.h"
+using namespace std;
 
 class Status {
 private:
 	Date date;
 	Time time;
-	char* text;
+	string text;
 public:
-	Status(char* text);
+	Status(string text);
 	Status(const Status& cp);
 	~Status();
 	void printStatus();

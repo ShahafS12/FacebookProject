@@ -1,6 +1,6 @@
 #include "Pages.h"
 
-Pages::Pages(char* _name) : name(_strdup(_name)) {}
+Pages::Pages(string _name) : name(_name) {}
 
 Pages::~Pages() {
 	// delete constactor
@@ -10,10 +10,9 @@ Pages::~Pages() {
 
 void Pages::addStatus() {
 	// add status to page
-	char text[MAX_STATUS];
+	string text;
 	cout << "What is your status?" << endl;
-	cin.ignore();
-	cin.getline(text, MAX_STATUS);
+	cin >> text;
 	Status* s = new Status(text);
 	status.push_back(s);
 }

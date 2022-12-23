@@ -41,7 +41,7 @@ Date Facebook::addDate()
 	return res;
 }
 
-void Facebook::addName(char* fname,char* lname)
+void Facebook::addName(string fname, string lname)
 {
 	cout << "Enter first name" << endl;
 	cin >> fname;
@@ -51,11 +51,11 @@ void Facebook::addName(char* fname,char* lname)
 		throw "Name already in use";
 }
 
-bool Facebook::nameExists(char* fname, char* lname)
+bool Facebook::nameExists(string fname, string lname)
 {
 	for (int i = 0; i < friends.size(); i++)
 	{
-		if(!strcmp(fname,this->friends[i]->getFName())&& !strcmp(lname, this->friends[i]->getLName()))
+		if(!fname.compare(friends[i]->getFName())&&lname.compare(this->friends[i]->getLName()))
 			return true;
 	}
 	return false;

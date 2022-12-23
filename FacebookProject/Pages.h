@@ -10,11 +10,11 @@ class Friend;
 
 class Pages {
 private:
-	char* name;
+	string name;
 	vector<Friend*> fans;
 	vector<Status*> status;
 public:
-	Pages(char* _name);
+	Pages(string _name);
 	void addStatus();
 	void PrintPagesStatus();
 	void showMyFans();
