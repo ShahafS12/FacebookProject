@@ -3,7 +3,7 @@
 Pages::Pages(string _name) : name(_name) {}
 
 Pages::~Pages() {
-	// delete constactor
+	// delete constructor
 	for (int i = 0; i < status.size(); i++)
 		delete (status[i]);
 }

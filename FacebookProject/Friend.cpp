@@ -30,11 +30,11 @@ void Friend::addTwoDefaultStatus()
 void Friend::addFriend(Friend* _friend, bool sender)
 {// connects between two users after checking they werent friends before
 	if (this == _friend)
-		throw "User can't be friend with itself";
+		throw friendException(ErrorCode::selfFriend);
 	for (int i = 0; i < friends.size(); i++)
 	{
 		if (_friend == friends[i])
-			throw "Users already friends";
+			throw friendException(ErrorCode::alreadyFriends);
 	}
 		friends.push_back(_friend);
 		if (sender)
@@ -62,7 +62,7 @@ void Friend::removeFriend(Friend* _friend, bool remover)
 		}
 	}
 	if (foundFriend == false)
-		throw "User was not in friend list";
+		throw friendException(ErrorCode::notFriends);
 }
 
 void Friend::unlikePage(Pages* _toUnlike, bool remover)
@@ -80,7 +80,7 @@ void Friend::unlikePage(Pages* _toUnlike, bool remover)
 		}
 	}
 	if (!foundPage)
-		throw "Page not prevously liked";
+		throw friendException(ErrorCode::pageNotLiked);
 }
 
 void Friend::likePage(Pages* const _toLike, bool sender)
@@ -93,7 +93,7 @@ void Friend::likePage(Pages* const _toLike, bool sender)
 			_toLike->addFan(this, false);
 	}
 	else
-		throw "Page already liked";
+		throw friendException(ErrorCode::pageAlreadyLiked);
 }
 
 bool Friend::pageLiked(Pages* const _toLike)

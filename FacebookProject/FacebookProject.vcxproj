@@ -142,6 +142,7 @@
     <ClCompile Include="Date.cpp" />
     <ClCompile Include="Facebook.cpp" />
     <ClCompile Include="Friend.cpp" />
+    <ClCompile Include="friendException.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Pages.cpp" />
     <ClCompile Include="Status.cpp" />

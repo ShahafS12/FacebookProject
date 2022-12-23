@@ -297,6 +297,14 @@ void Facebook::preformAction(int actionCode)
 	{
 		cout << msg << endl;
 	}
+	catch (friendException e)
+	{
+		cout << e.what() << endl;
+	}
+	/*catch (pageException e)
+	{
+		cout << e.what() << endl;
+	}*/
 }
 
 void Facebook::leaveFacebook() {

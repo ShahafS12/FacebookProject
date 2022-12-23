@@ -4,6 +4,7 @@
 #include "Date.h"
 #include "Status.h"
 #include "Pages.h"
+#include "friendException.h"
 #include <vector>
 #include <string>
 using namespace std;
