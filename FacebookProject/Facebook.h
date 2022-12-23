@@ -1,19 +1,14 @@
 #include "Pages.h"
+#include <vector>
 
 class Facebook {
 private:
-	Friend** friends = new Friend*;
-	int phyS_friends = 1;
-	int numOfFriends = 0;
-	Pages** pages = new Pages*;
-	int phyS_pages = 1;
-	int numOfPages = 0;
+	vector<Friend*> friends;
+	vector<Pages*> pages;
 public:
 	Facebook() {};
 	void addDefaultData();
 	void addUser();
-	void checkSizeFriends();
-	void checkSizePages();
 	void addFanPage();
 	void showMembers();
 	void showPages();

@@ -151,6 +151,7 @@
     <ClInclude Include="Date.h" />
     <ClInclude Include="Facebook.h" />
     <ClInclude Include="Friend.h" />
+    <ClInclude Include="friendException.h" />
     <ClInclude Include="Pages.h" />
     <ClInclude Include="Status.h" />
     <ClInclude Include="Time.h" />
