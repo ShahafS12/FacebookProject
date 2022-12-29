@@ -5,26 +5,15 @@ void Facebook::addUser()
 {
 	char fname[MAX_NAME], lname[MAX_NAME];
 	Date d;
-	try
-	{
-		addName(fname, lname);
-	}
-	catch (const char* msg)
-	{
-		cout << msg << " try again:" << endl;
-		addName(fname, lname);
-	}
+	cout << "Enter first name" << endl;
+	cin >> fname;
+	cout << "Enter last name" << endl;
+	cin >> lname;
+	if (nameExists(fname, lname))
+		throw FacebookException(FacebookErrorCode::InvalidName);
 	cout << "Enter your date of birth" << endl;
 	char a = getchar(); // The only way cin working after...
-	try
-	{
 		d = addDate();
-	}
-	catch (const char* msg)
-	{
-		cout << msg << " try again:" << endl;
-		d = addDate();
-	}
 	Friend* f = new Friend(fname, lname, d);
 	friends.push_back(f); // constracor copy 
 }
@@ -36,7 +25,7 @@ Date Facebook::addDate()
 	cout << "Month:"; cin >> month;
 	cout << "Year:"; cin >> year;
 	if (day < 1 || day > 31 || month < 1 || month > 12 || year < 1900 || year > 2017)
-		throw "Invalid date";
+		throw FacebookException(FacebookErrorCode::InvalidDate);
 	Date res(day, month, year);
 	return res;
 }
@@ -48,7 +37,7 @@ void Facebook::addName(string fname, string lname)
 	cout << "Enter last name" << endl;
 	cin >> lname;
 	if (nameExists(fname, lname))
-		throw "Name already in use";
+		throw FacebookException(FacebookErrorCode::InvalidName);
 }
 
 bool Facebook::nameExists(string fname, string lname)
@@ -170,14 +159,14 @@ void Facebook::checkUsersExist(int user)
 {
 	// check if the users exist
 	if (user > friends.size() || user < 1)
-		throw "invalid values";
+		throw FacebookException(FacebookErrorCode::InvalidValue);
 }
 
 void Facebook::checkPageExist(int page)
 {
 	// check if the users exist
 	if (page > pagesLiked.size() || page < 1)
-		throw "invalid values";
+		throw FacebookException(FacebookErrorCode::InvalidValue);
 }
 
 void Facebook::preformAction(int actionCode)
@@ -300,6 +289,10 @@ void Facebook::preformAction(int actionCode)
 		cout << e.what() << endl;
 	}
 	catch (pagesException e)
+	{
+		cout << e.what() << endl;
+	}
+	catch (FacebookException e)
 	{
 		cout << e.what() << endl;
 	}

@@ -1,6 +1,7 @@
 #include "Pages.h"
 #include <vector>
 #include <string>
+#include "FacebookException.h"
 using namespace std;
 
 class Facebook {
