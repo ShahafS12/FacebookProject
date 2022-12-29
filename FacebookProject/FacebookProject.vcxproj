@@ -145,6 +145,7 @@
     <ClCompile Include="friendException.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Pages.cpp" />
+    <ClCompile Include="pagesException.cpp" />
     <ClCompile Include="Status.cpp" />
     <ClCompile Include="Time.cpp" />
   </ItemGroup>
@@ -154,6 +155,7 @@
     <ClInclude Include="Friend.h" />
     <ClInclude Include="friendException.h" />
     <ClInclude Include="Pages.h" />
+    <ClInclude Include="pagesException.h" />
     <ClInclude Include="Status.h" />
     <ClInclude Include="Time.h" />
   </ItemGroup>

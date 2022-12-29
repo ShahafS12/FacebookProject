@@ -45,7 +45,7 @@ void Pages::addFan(Friend* const _friend, bool sender)
 			_friend->likePage(this, false);
 	}
 	else
-		throw "User already likes this page";
+		throw pagesException(ErrorCodePages::pageAlreadyLike);
 }
 
 bool Pages::isFan(Friend* const _friend)
@@ -71,7 +71,7 @@ void Pages::removeFan(Friend* const _friend, bool remover)
 				_friend->unlikePage(this, false);
 			return;
 		}
-		if (!foundFriend)
-			throw "User is not a fan of this page";
 	}
+		if (!foundFriend)
+			throw pagesException(ErrorCodePages::notFan);
 }

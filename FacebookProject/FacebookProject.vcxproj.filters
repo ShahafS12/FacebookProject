@@ -39,6 +39,9 @@
     <ClCompile Include="friendException.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="pagesException.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Date.h">
@@ -60,6 +63,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="friendException.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="pagesException.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

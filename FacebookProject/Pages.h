@@ -1,6 +1,7 @@
 #pragma once
 #include "Friend.h"
 #include "Status.h"
+#include "pagesException.h" // problem is here
 #include <vector>
 using namespace std;
 
