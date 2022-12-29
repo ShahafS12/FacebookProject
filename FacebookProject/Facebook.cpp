@@ -44,7 +44,7 @@ bool Facebook::nameExists(string fname, string lname)
 {
 	for (int i = 0; i < friends.size(); i++)
 	{
-		if(!fname.compare(friends[i]->getFName())&&lname.compare(this->friends[i]->getLName()))
+		if(fname.compare(friends[i]->getFName())&&lname.compare(this->friends[i]->getLName()))
 			return true;
 	}
 	return false;

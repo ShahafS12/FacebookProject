@@ -155,6 +155,19 @@ void Friend::mostUpdatedStatuses() {
 	}
 }
 
+const Friend& Friend::operator+=(const Friend& other)
+{
+	this->addFriend((Friend*)&other,true);
+	return *this;
+}
+
+
+const Friend& Friend::operator+=(const Pages& other)
+{
+	this->likePage((Pages*)&other,true);
+	return *this;
+}
+
 Friend::~Friend() {
 	// delete constractor
 	for (int i = 0; i < statuses.size(); i++)

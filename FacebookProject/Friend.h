@@ -39,7 +39,8 @@ public:
 	string getFName();
 	string getLName();
 	bool operator>(Friend* _friend);
-	//Friend& operator+=(Friend&& _friend);
+	const Friend& operator+=(const Friend& other);
+	const Friend& operator+=(const Pages& other);
 
 private:
 	void checkIfValidAdd(Friend* const _friend);

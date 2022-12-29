@@ -6,11 +6,11 @@ const char* FacebookException::what() const
     switch (errorcode)
     {
     case FacebookErrorCode::InvalidDate:
-        return "Invalid data";
+        return "Invalid date";
     case FacebookErrorCode::InvalidName:
-        return "Users already friends";
+        return "Invalid name";
     case FacebookErrorCode::InvalidValue:
-        return "User was not in friend list";
+        return "Invalid values";
     default:
         return "Unknown error";
     }
