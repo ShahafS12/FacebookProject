@@ -295,18 +295,14 @@ void Facebook::preformAction(int actionCode)
 			cout << "invalid action";
 		}
 	}
-	catch (const char* msg)
-	{
-		cout << msg << endl;
-	}
 	catch (friendException e)
 	{
 		cout << e.what() << endl;
 	}
-	/*catch (pageException e)
+	catch (pagesException e)
 	{
 		cout << e.what() << endl;
-	}*/
+	}
 }
 
 void Facebook::leaveFacebook() {
