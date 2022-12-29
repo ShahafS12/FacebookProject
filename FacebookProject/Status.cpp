@@ -19,3 +19,11 @@ void Status::printStatus() {
 	this->date.printDate();
 	this->time.printTime();
 }
+
+bool Status::operator==(string _text) {
+	return text.compare(_text);
+}
+
+bool Status::operator!=(string _text) {
+	return !(text.compare(_text));
+}

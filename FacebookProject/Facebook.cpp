@@ -142,7 +142,7 @@ void Facebook::menu()
 	cin >> action;
 	preformAction(action);
 	cout << "\n" << endl;
-	if (action != 15)//15 means exit
+	if (action != 15) //15 means exit
 		menu();
 }
 

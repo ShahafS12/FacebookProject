@@ -41,10 +41,21 @@ void Friend::addFriend(Friend* _friend, bool sender)
 			_friend->addFriend(this, false);
 }
 
-Friend& Friend::operator+=(Friend&& _friend)
+/*Friend& Friend::operator+=(Friend&& _friend)
 {
 	this->addFriend(&_friend, true);
 	return *this;
+}*/
+
+bool Friend::operator>(Friend* _friend) {
+	if (this->getAmountOfFriends() > _friend->getAmountOfFriends())
+		return true;
+	else
+		return false;
+}
+
+const int Friend::getAmountOfFriends() {
+	return friends.size();
 }
 
 void Friend::removeFriend(Friend* _friend, bool remover)

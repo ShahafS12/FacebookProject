@@ -35,9 +35,12 @@ public:
 	void mostUpdatedStatuses();
 	void likePage(Pages* const _toLike, bool sender);
 	void unlikePage(Pages* _toUnlike, bool sender);
+	const int getAmountOfFriends();
 	string getFName();
 	string getLName();
-	Friend& operator+=(Friend&& _friend);
+	bool operator>(Friend* _friend);
+	//Friend& operator+=(Friend&& _friend);
+
 private:
 	void checkIfValidAdd(Friend* const _friend);
 	bool pageLiked(Pages* const _toLike);

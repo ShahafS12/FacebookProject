@@ -16,4 +16,6 @@ public:
 	Status(const Status& cp);
 	~Status();
 	void printStatus();
+	bool operator==(string text);
+	bool operator!=(string _text);
 };

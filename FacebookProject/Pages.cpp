@@ -75,3 +75,14 @@ void Pages::removeFan(Friend* const _friend, bool remover)
 		if (!foundFriend)
 			throw pagesException(ErrorCodePages::notFan);
 }
+
+bool Pages::operator>(Pages* _page) {
+	if (this->getAmountOfFans() > _page->getAmountOfFans())
+		return true;
+	else
+		return false;
+}
+
+int Pages::getAmountOfFans() {
+	return this->fans.size();
+}
