@@ -23,7 +23,7 @@ public:
 	void addFan(Friend* const _friend, bool sender);
 	void removeFan(Friend* const _friend, bool sender);
 	~Pages();
-	int getAmountOfFans();
+	const int getAmountOfFans();
 	bool operator>(Pages* _page);
 private:
 	bool isFan(Friend* const _friend);

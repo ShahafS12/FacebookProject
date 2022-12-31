@@ -11,7 +11,6 @@ Pages::~Pages() {
 void Pages::addStatus() {
 	// add status to page
 	string text;
-	cout << "What is your status?" << endl;
 	cin >> text;
 	Status* s = new Status(text);
 	status.push_back(s);
@@ -83,6 +82,6 @@ bool Pages::operator>(Pages* _page) {
 		return false;
 }
 
-int Pages::getAmountOfFans() {
+const int Pages::getAmountOfFans() {
 	return this->fans.size();
 }

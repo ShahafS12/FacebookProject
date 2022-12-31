@@ -36,13 +36,11 @@ public:
 	void likePage(Pages* const _toLike, bool sender);
 	void unlikePage(Pages* _toUnlike, bool sender);
 	const int getAmountOfFriends();
-	string getFName();
-	string getLName();
+	const string getFName();
+	const string getLName();
 	bool operator>(Friend* _friend);
 	const Friend& operator+=(const Friend& other);
 	const Friend& operator+=(const Pages& other);
-
 private:
-	void checkIfValidAdd(Friend* const _friend);
 	bool pageLiked(Pages* const _toLike);
 };

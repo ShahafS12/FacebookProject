@@ -44,7 +44,7 @@ bool Facebook::nameExists(string fname, string lname)
 {
 	for (int i = 0; i < friends.size(); i++)
 	{
-		if(fname.compare(friends[i]->getFName())&&lname.compare(this->friends[i]->getLName()))
+		if(!(fname.compare(friends[i]->getFName())&&lname.compare(this->friends[i]->getLName())))
 			return true;
 	}
 	return false;
@@ -187,6 +187,7 @@ void Facebook::preformAction(int actionCode)
 			showMembers();
 			cin >> user;
 			checkUsersExist(user);
+			cout << "What is your status?" << endl;
 			friends[user - 1]->addStatus();
 			break;
 		case 4:
@@ -194,6 +195,7 @@ void Facebook::preformAction(int actionCode)
 			showPages();
 			cin >> page;
 			checkPageExist(page);
+			cout << "What is your status?" << endl;
 			pagesLiked[page - 1]->addStatus();
 			break;
 		case 5:

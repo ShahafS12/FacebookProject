@@ -6,7 +6,6 @@ Friend::Friend(string _fname, string _lname, Date _dob) : fname(_fname), lname(_
 void Friend::addStatus() {
 	// Add status to a user
 	char text[MAX_STATUS];
-	cout << "What is your status?" << endl;
 	cin.ignore();
 	cin.getline(text, MAX_STATUS);
 	Status* s = new Status(text);
@@ -40,12 +39,6 @@ void Friend::addFriend(Friend* _friend, bool sender)
 		if (sender)
 			_friend->addFriend(this, false);
 }
-
-/*Friend& Friend::operator+=(Friend&& _friend)
-{
-	this->addFriend(&_friend, true);
-	return *this;
-}*/
 
 bool Friend::operator>(Friend* _friend) {
 	if (this->getAmountOfFriends() > _friend->getAmountOfFriends())
@@ -128,12 +121,12 @@ void Friend::getFriendName() {
 	cout << this->fname << " " << this->lname << endl;
 }
 
-string Friend::getFName()
+const string Friend::getFName()
 {
 	return this->fname;
 }
 
-string Friend::getLName()
+const string Friend::getLName()
 {
 	return this->lname;
 }
