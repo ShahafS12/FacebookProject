@@ -1,15 +1,42 @@
 using namespace std;
 #include "Friend.h"
 
+	
 Friend::Friend(string _fname, string _lname, Date _dob) : fname(_fname), lname(_lname), dob(_dob) {}
 
-void Friend::addStatus() {
+void Friend::addStatus(int choice) {
 	// Add status to a user
+	if (statusChoice::Text < choice && choice > statusChoice::Video)
+		throw StatusException(ErrorCodeStatus::InvalidChoice);
+	cout << "What is your status?" << endl;
 	char text[MAX_STATUS];
+	photoStat* s;
+	videoStat* v;
+	Status* u;
+	string path;
 	cin.ignore();
 	cin.getline(text, MAX_STATUS);
-	Status* s = new Status(text);
-	statuses.push_back(s);
+	switch (choice)
+	{
+		case statusChoice::Image:
+			cout << "Enter photo path" << endl;
+			getline(cin, path);
+			s = new photoStat(text, path);
+			statuses.push_back(s);
+			break;
+		case statusChoice::Video:
+			cout << "Enter video path" << endl;
+			getline(cin, path);
+			v = new videoStat(text, path);
+			statuses.push_back(v);
+			break;
+		default: 
+			u = new Status(text);
+			statuses.push_back(u);
+			break;
+		break;
+	}
+
 }
 
 void Friend::addTwoDefaultStatus()
@@ -21,7 +48,7 @@ void Friend::addTwoDefaultStatus()
 	statuses.push_back(s1);
 	string text2;
 	text2 = fname;
-	text2 += "'s first status";
+	text2 += "'s second status";
 	Status* s2 = new Status(text2);
 	statuses.push_back(s2);
 }
@@ -37,6 +64,7 @@ void Friend::addFriend(Friend* _friend, bool sender)
 	}
 		friends.push_back(_friend);
 		if (sender)
+
 			_friend->addFriend(this, false);
 }
 
@@ -148,6 +176,11 @@ void Friend::mostUpdatedStatuses() {
 	}
 }
 
+Date Friend::getDob() 
+{//returns the date of birth
+	return this->dob;
+}
+
 const Friend& Friend::operator+=(const Friend& other)
 {
 	this->addFriend((Friend*)&other,true);
@@ -165,4 +198,66 @@ Friend::~Friend() {
 	// delete constractor
 	for (int i = 0; i < statuses.size(); i++)
 			delete (statuses[i]);
+}
+
+void Friend::writeToFileFriend(ofstream& file)
+{
+	Date d = getDob();
+	file << fname << " ";
+	file << lname << " ";
+	file << d.getDay() << " ";
+	file << d.getMonth() << " ";
+	file << d.getYear() << " ";
+	file << statuses.size() << " ";
+	for (int i = 0; i < statuses.size(); i++)
+	{
+		file << statuses[i]->getType() << " ";
+		file << statuses[i]->getText() << " ";
+		if (statuses[i]->getType() == statusChoice::Image)
+		{
+			photoStat* p = (photoStat*)statuses[i];
+			file << p->getPath() << " ";
+		}
+		else if (statuses[i]->getType() == statusChoice::Video)
+		{
+			videoStat* v = (videoStat*)statuses[i];
+			file << v->getPath() << " ";
+		}
+		file << endl;
+	}
+	file << friends.size() << " ";
+	for (int i = 0; i < friends.size(); i++)
+	{
+		file << friends[i]->getFName() << " ";
+		file << friends[i]->getLName() << " ";
+	}
+	file << endl; // end of friend! seperate by new line
+}
+
+void Friend::readStatus(ifstream& file) {
+	// read statuses from file
+	int type;
+	string statusText;
+	string path;
+	file >> type;
+	getline(file , statusText);
+	if (type == statusChoice::Image)
+	{
+		getline(file, path);
+		photoStat* photoStatus = new photoStat(statusText, path);
+		statuses.push_back(photoStatus);
+	}
+	else if (type == statusChoice::Video)
+	{
+		getline(file, path);
+		videoStat* videoStatus = new videoStat(statusText, path);
+		statuses.push_back(videoStatus);
+	}
+	else
+	{
+		Status* s = new Status(statusText);
+		statuses.push_back(s);
+	}
+
+	
 }

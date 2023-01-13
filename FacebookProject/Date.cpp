@@ -18,3 +18,13 @@ Date::Date() {
 void Date::printDate() {
     cout << day << "." << month << "." << year << endl;
 }
+
+short int Date::getDay() {
+	return day;
+}
+short int Date::getMonth() {
+	return month;
+}
+short int Date::getYear() {
+	return year;
+}

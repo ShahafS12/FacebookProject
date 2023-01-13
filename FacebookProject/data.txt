@@ -1,0 +1,11 @@
+3
+Shahaf Shabo 9 19 1999 2 1  Shahaf's first status  
+1  Shahaf's second status  
+1 Tomer Klein 
+Tomer Klein 11 1 1997 2 1  Tomer's first status  
+1  Tomer's second status  
+2 Shahaf Shabo Justin Bieber 
+Justin Bieber 4 1 1985 2 1  Justin's first status  
+1  Justin's second status  
+1 Tomer Klein 
+0

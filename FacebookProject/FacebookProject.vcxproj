@@ -147,8 +147,11 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Pages.cpp" />
     <ClCompile Include="pagesException.cpp" />
+    <ClCompile Include="photoStat.cpp" />
     <ClCompile Include="Status.cpp" />
+    <ClCompile Include="StatusException.cpp" />
     <ClCompile Include="Time.cpp" />
+    <ClCompile Include="videoStat.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Date.h" />
@@ -158,8 +161,11 @@
     <ClInclude Include="friendException.h" />
     <ClInclude Include="Pages.h" />
     <ClInclude Include="pagesException.h" />
+    <ClInclude Include="photoStat.h" />
     <ClInclude Include="Status.h" />
+    <ClInclude Include="StatusException.h" />
     <ClInclude Include="Time.h" />
+    <ClInclude Include="videoStat.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

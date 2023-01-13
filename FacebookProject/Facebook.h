@@ -2,6 +2,7 @@
 #include <vector>
 #include <string>
 #include "FacebookException.h"
+
 using namespace std;
 
 class Facebook {
@@ -17,6 +18,9 @@ public:
 	void showPages();
 	void menu();
 	void leaveFacebook();
+	Friend* findFriend(string fname, string lname);
+	void saveData();
+	void loadData();
 private:
 	void addDefaultPages();
 	void addDefaultFriends(Pages* p1, Pages* p2, Pages* p3);

@@ -1,7 +1,7 @@
 #include "Status.h"
 using namespace std;
 
-Status::Status(string _text) : text(_text) {}
+Status::Status(string _text,int _type) : text(_text),type(_type) {}
 
 Status::Status(const Status& cp) {
 	text = cp.text;
@@ -27,3 +27,14 @@ bool Status::operator==(string _text) {
 bool Status::operator!=(string _text) {
 	return !(text.compare(_text));
 }
+
+int Status::getType() const
+{ // return the type of the status
+	return type;
+}
+
+string Status::getText() const {
+	// return the text of the status
+	return text;
+}
+

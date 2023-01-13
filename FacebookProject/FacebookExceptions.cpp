@@ -11,6 +11,8 @@ const char* FacebookException::what() const
         return "Invalid name";
     case FacebookErrorCode::InvalidValue:
         return "Invalid values";
+	case FacebookErrorCode::ErrorOpeningFile:
+		return "Error opening file";
     default:
         return "Unknown error";
     }

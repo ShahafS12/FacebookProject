@@ -2,7 +2,8 @@
 
 int main() {
 	Facebook f;
-	f.addDefaultData();
+	f.loadData();
+	//f.addDefaultData();
 	f.menu();
 	return 0;
 }

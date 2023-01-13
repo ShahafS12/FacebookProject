@@ -171,7 +171,7 @@ void Facebook::checkPageExist(int page)
 
 void Facebook::preformAction(int actionCode)
 {//preforms action according to chosen action code
-	int user,page,secondUser;
+	int user,page,secondUser, choice;
 	try
 	{
 		switch (actionCode)
@@ -187,16 +187,24 @@ void Facebook::preformAction(int actionCode)
 			showMembers();
 			cin >> user;
 			checkUsersExist(user);
-			cout << "What is your status?" << endl;
-			friends[user - 1]->addStatus();
+			cout << "What kind of status you want to add?" << endl;
+			cout << "1-Text status" << endl;
+			cout << "2-Photo status" << endl;
+			cout << "3-Video status" << endl;
+			cin >> choice;
+			friends[user - 1]->addStatus(choice);
 			break;
 		case 4:
 			cout << "Choose a page" << endl;
 			showPages();
 			cin >> page;
 			checkPageExist(page);
-			cout << "What is your status?" << endl;
-			pagesLiked[page - 1]->addStatus();
+			cout << "What kind of status you want to add?" << endl;
+			cout << "1-Text status" << endl;
+			cout << "2-Photo status" << endl;
+			cout << "3-Video status" << endl;
+			cin >> choice;
+			pagesLiked[page - 1]->addStatus(choice);
 			break;
 		case 5:
 			cout << "Choose a user" << endl;
@@ -298,10 +306,72 @@ void Facebook::preformAction(int actionCode)
 	{
 		cout << e.what() << endl;
 	}
+	catch (StatusException e)
+	{
+		cout << e.what() << endl;
+	}
+}
+
+void Facebook::saveData()
+{ //save data to file
+	std::ofstream outFile("data.txt");
+	// Write the number of friends to the file
+	int numFriends = friends.size();
+	Date d;
+	outFile << numFriends << endl;
+	for (auto _friends : friends)
+	{
+		_friends->writeToFileFriend(outFile);
+	}
+	// Write the number of pages to the file
+	int numPages = pagesLiked.size();
+	outFile << numPages << endl;
+	for (auto _pages : pagesLiked)
+	{
+		_pages->writeToFilePages(outFile);
+	}
+	outFile.close();
+}
+
+void Facebook::loadData() {
+	//load data from file
+	ifstream inFile("data.txt");
+	if (!inFile)
+	{
+		throw FacebookException(FacebookErrorCode::ErrorOpeningFile);
+	}
+	int numFriends;
+	inFile >> numFriends;
+	for (int i = 0; i < numFriends; i++)
+	{
+		string fName, lName;
+		int month, day, year, numOfStatueses, numOfFriends, numOfFans;
+		inFile >> fName >> lName >> day >> month >> year;
+		Date d(month, day, year);
+		Friend* f = new Friend(fName, lName, d);
+		friends.push_back(f);
+		inFile >> numOfStatueses;
+
+		for (int i = 0; i < numOfStatueses; i++) {
+			f->readStatus(inFile);
+		}
+		
+		inFile >> numOfFriends;
+		for (int i = 0; i < numOfFriends; i++) {
+			inFile >> fName >> lName;
+			Friend* findF = findFriend(fName, lName);
+ 			if (findF != nullptr) {
+				f->addFriend(findF, true);
+			}
+		}
+
+	}
 }
 
 void Facebook::leaveFacebook() {
-	// Delete all the allocations
+	// Delete all the allocations + save the data to a file
+	saveData();
+	
 	for (int i = 0; i < friends.size(); i++)
 			delete (friends[i]);
 
@@ -309,4 +379,14 @@ void Facebook::leaveFacebook() {
 		delete (pagesLiked[i]);
 
 	exit(1);
+}
+
+Friend* Facebook::findFriend(string fname, string lname)
+{ //find and return friend by name 
+	for (int i = 0; i < friends.size(); i++)
+	{
+		if (!(fname.compare(friends[i]->getFName()) && lname.compare(this->friends[i]->getLName())))
+			return (friends[i]);
+	}
+	return nullptr;
 }

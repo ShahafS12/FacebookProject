@@ -1,6 +1,6 @@
 #include <stdexcept>
 #include <string>
-enum class FacebookErrorCode { InvalidDate, InvalidName,InvalidValue};
+enum class FacebookErrorCode { InvalidDate, InvalidName,InvalidValue, ErrorOpeningFile};
 
 class FacebookException : public std::exception
 {

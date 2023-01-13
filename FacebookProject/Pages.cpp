@@ -8,12 +8,38 @@ Pages::~Pages() {
 		delete (status[i]);
 }
 
-void Pages::addStatus() {
+void Pages::addStatus(int choice) {
 	// add status to page
+	if (statusChoice::Text < choice && choice > statusChoice::Video)
+		throw StatusException(ErrorCodeStatus::InvalidChoice);
+	cout << "What is your status?" << endl;
 	string text;
 	cin >> text;
-	Status* s = new Status(text);
-	status.push_back(s);
+	photoStat* s;
+	videoStat* v;
+	Status* u;
+	string path;
+	switch (choice)
+	{
+	case statusChoice::Image:
+		cout << "Enter photo path" << endl;
+		getline(cin, path);
+		s = new photoStat(text, path);
+		status.push_back(s);
+		break;
+	case statusChoice::Video:
+		cout << "Enter video path" << endl;
+		getline(cin, path);
+		v = new videoStat(text, path);
+		status.push_back(v);
+		break;
+	default:
+		u = new Status(text);
+		status.push_back(u);
+		break;
+		break;
+	}
+
 }
 
 void Pages::PrintPagesStatus() {
@@ -84,4 +110,32 @@ bool Pages::operator>(Pages* _page) {
 
 const int Pages::getAmountOfFans() {
 	return this->fans.size();
+}
+
+void Pages::writeToFilePages(ofstream& file) {
+	// write to file
+	file << this->name << " ";
+	file << this->status.size() << " ";
+	for (int i = 0; i < this->status.size(); i++)
+	{
+		file << this->status[i]->getType() << " ";
+		file << this->status[i]->getText() << " ";
+		if (this->status[i]->getType() == statusChoice::Image)
+		{
+			photoStat* p = (photoStat*)status[i];
+			file << p->getPath() << " ";
+		}
+		else if (this->status[i]->getType() == statusChoice::Video)
+		{
+			videoStat* v = (videoStat*)status[i];
+			file << v->getPath() << " ";
+		}
+	}
+	file << endl;
+	file << this->fans.size() << " ";
+	for (int i = 0; i < fans.size(); i++) {
+		file << fans[i]->getFName() << " ";
+		file << fans[i]->getLName() << " ";
+	}
+	file << endl;
 }

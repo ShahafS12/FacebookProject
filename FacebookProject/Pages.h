@@ -16,7 +16,7 @@ private:
 	vector<Status*> status;
 public:
 	Pages(string _name);
-	void addStatus();
+	void addStatus(int choice);
 	void PrintPagesStatus();
 	void showMyFans();
 	void getPageName();
@@ -24,6 +24,7 @@ public:
 	void removeFan(Friend* const _friend, bool sender);
 	~Pages();
 	const int getAmountOfFans();
+	void writeToFilePages(ofstream& file);
 	bool operator>(Pages* _page);
 private:
 	bool isFan(Friend* const _friend);
