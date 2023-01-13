@@ -258,6 +258,4 @@ void Friend::readStatus(ifstream& file) {
 		Status* s = new Status(statusText);
 		statuses.push_back(s);
 	}
-
-	
 }

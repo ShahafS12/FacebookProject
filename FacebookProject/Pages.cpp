@@ -115,6 +115,7 @@ const int Pages::getAmountOfFans() {
 void Pages::writeToFilePages(ofstream& file) {
 	// write to file
 	file << this->name << " ";
+	file << endl;
 	file << this->status.size() << " ";
 	for (int i = 0; i < this->status.size(); i++)
 	{
@@ -130,12 +131,39 @@ void Pages::writeToFilePages(ofstream& file) {
 			videoStat* v = (videoStat*)status[i];
 			file << v->getPath() << " ";
 		}
+		file << endl;
 	}
-	file << endl;
 	file << this->fans.size() << " ";
 	for (int i = 0; i < fans.size(); i++) {
 		file << fans[i]->getFName() << " ";
 		file << fans[i]->getLName() << " ";
 	}
 	file << endl;
+}
+
+
+void Pages::readStatus(ifstream& file) {
+	// read statuses from file
+	int type;
+	string statusText;
+	string path;
+	file >> type;
+	getline(file, statusText);
+	if (type == statusChoice::Image)
+	{
+		getline(file, path);
+		photoStat* photoStatus = new photoStat(statusText, path);
+		status.push_back(photoStatus);
+	}
+	else if (type == statusChoice::Video)
+	{
+		getline(file, path);
+		videoStat* videoStatus = new videoStat(statusText, path);
+		status.push_back(videoStatus);
+	}
+	else
+	{
+		Status* s = new Status(statusText);
+		status.push_back(s);
+	}
 }

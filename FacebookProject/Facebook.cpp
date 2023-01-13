@@ -61,53 +61,6 @@ void Facebook::addFanPage() {
 }
 
 
-void Facebook::addDefaultData()
-{ // add deafalt data to facebook
-	addDefaultPages();
-	addDefaultFriends(pagesLiked[0],pagesLiked[1],pagesLiked[2]);
-}
-
-void Facebook::addDefaultPages()
-{   // A function to add default pages
-	char pname1[MAX_PAGE_NAME] = "Justin to israel";
-	char pname2[MAX_PAGE_NAME] = "Hapshuta";
-	char pname3[MAX_PAGE_NAME] = "Lemons cummunity";
-	Pages* p1 = new Pages(pname1);
-	pagesLiked.push_back(p1);
-	Pages* p2 = new Pages(pname2);
-	pagesLiked.push_back(p2);
-	Pages* p3 = new Pages(pname3);
-	pagesLiked.push_back(p3);
-}
-
-void Facebook::addDefaultFriends(Pages* p1, Pages* p2, Pages* p3)
-{// still needs to like pages for those friends
-	Date d1(19, 9, 1999);
-	Date d2(1, 11, 1997);
-	Date d3(1, 4, 1985);
-	char fname1[MAX_NAME] = "Shahaf";
-	char fname2[MAX_NAME] = "Tomer";
-	char fname3[MAX_NAME] = "Justin";
-	char lname1[MAX_NAME] = "Shabo";
-	char lname2[MAX_NAME] = "Klein";
-	char lname3[MAX_NAME] = "Bieber";
-	Friend* f1 = new Friend(fname1, lname1, d1);
-	f1->addTwoDefaultStatus();
-	f1->likePage(p1,true);
-	f1->likePage(p2, true);
-	friends.push_back(f1);
-	Friend* f2 = new Friend(fname2, lname2, d2);
-	f2->addTwoDefaultStatus();
-	f2->likePage(p3, true);
-	f2->addFriend(f1,true);
-	friends.push_back(f2);
-	Friend* f3 = new Friend(fname3, lname3, d3);
-	f3->addTwoDefaultStatus();
-	f3->likePage(p1, true);
-	f3->addFriend(f2,true);
-	friends.push_back(f3);
-}
-
 void Facebook::showMembers() {
 	// Print all members in Facebook
 	for (int i = 0; i < friends.size(); i++) {
@@ -325,7 +278,7 @@ void Facebook::saveData()
 	}
 	// Write the number of pages to the file
 	int numPages = pagesLiked.size();
-	outFile << numPages << endl;
+	outFile << numPages;
 	for (auto _pages : pagesLiked)
 	{
 		_pages->writeToFilePages(outFile);
@@ -340,7 +293,7 @@ void Facebook::loadData() {
 	{
 		throw FacebookException(FacebookErrorCode::ErrorOpeningFile);
 	}
-	int numFriends;
+	int numFriends, numPages;
 	inFile >> numFriends;
 	for (int i = 0; i < numFriends; i++)
 	{
@@ -355,16 +308,36 @@ void Facebook::loadData() {
 		for (int i = 0; i < numOfStatueses; i++) {
 			f->readStatus(inFile);
 		}
-		
+
 		inFile >> numOfFriends;
 		for (int i = 0; i < numOfFriends; i++) {
 			inFile >> fName >> lName;
 			Friend* findF = findFriend(fName, lName);
- 			if (findF != nullptr) {
+			if (findF != nullptr) {
 				f->addFriend(findF, true);
 			}
 		}
-
+	}
+	inFile >> numPages;
+	for (int i = 0; i < numPages; i++) {
+		string pName, x; // x is for jumping a line in the file
+		getline(inFile, pName);
+		Pages* p = new Pages(pName);
+		pagesLiked.push_back(p);
+		int numOfStatuses;
+		inFile >> numOfStatuses;
+		for (int i = 0; i < numOfStatuses; i++) {
+			p->readStatus(inFile);
+		}
+		int numOfFans;
+		inFile >> numOfFans;
+		for (int i = 0; i < numOfFans; i++) {
+			string fName, lName;
+			inFile >> fName >> lName;
+			Friend* findF = findFriend(fName, lName);
+			p->addFan(findF, true);
+		}
+		getline(inFile, x);
 	}
 }
 

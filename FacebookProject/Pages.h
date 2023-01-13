@@ -26,6 +26,7 @@ public:
 	const int getAmountOfFans();
 	void writeToFilePages(ofstream& file);
 	bool operator>(Pages* _page);
+	void readStatus(ifstream& file);
 private:
 	bool isFan(Friend* const _friend);
 };
