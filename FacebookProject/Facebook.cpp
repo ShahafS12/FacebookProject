@@ -297,55 +297,65 @@ void Facebook::loadData() {
 	inFile >> numUsers;
 	for (int i = 0; i < numUsers; i++)
 	{
-		string fName, lName;
-		int month, day, year, numOfStatueses, numOfFriends, numOfFans;
-		inFile >> fName >> lName >> day >> month >> year;
-		Date d(month, day, year);
-		Friend* f = new Friend(fName, lName, d);
+		Friend* f = createFriendFromFile(inFile);
 		friends.push_back(f);
-		inFile >> numOfStatueses;
-
-		for (int i = 0; i < numOfStatueses; i++) {
-			f->readStatus(inFile);
-		}
-
-		inFile >> numOfFriends;
-		for (int i = 0; i < numOfFriends; i++) {
-			inFile >> fName >> lName;
-			Friend* findF = findFriend(fName, lName);
-			if (findF != nullptr) {
-				f->addFriend(findF, true);
-			}
-		}
 	}
 	inFile >> numPages;
 	string pName, x; // x is for jumping a line in the file
 	getline(inFile, x);
 	for (int i = 0; i < numPages; i++) {
-		getline(inFile, pName);
-		Pages* p = new Pages(pName);
+		Pages* p = CreatePageFromFile(inFile);
 		pagesLiked.push_back(p);
-		int numOfStatuses;
-		inFile >> numOfStatuses;
-		for (int i = 0; i < numOfStatuses; i++) {
-			p->readStatus(inFile);
-		}
-		//cin.ignore();
-		//getline(inFile, x);
-		int numOfFans;
-		inFile >> numOfFans;
- 		for (int i = 0; i < numOfFans; i++) {
-			string fName, lName;
-			inFile >> fName >> lName;
-			Friend* findF = findFriend(fName, lName);
-			p->addFan(findF, true);
-		}
 		getline(inFile, x);
 	}
 }
 
+Friend* Facebook::createFriendFromFile(ifstream& file)
+{
+	string fName, lName;
+	int month, day, year, numOfStatueses, numOfFriends, numOfFans;
+	file >> fName >> lName >> day >> month >> year;
+	Date d(month, day, year);
+	Friend* f = new Friend(fName, lName, d);
+	file >> numOfStatueses;
+
+	for (int i = 0; i < numOfStatueses; i++) {
+		f->readStatus(file);
+	}
+
+	file >> numOfFriends;
+	for (int i = 0; i < numOfFriends; i++) {
+		file >> fName >> lName;
+		Friend* findF = findFriend(fName, lName);
+		if (findF != nullptr) {
+			f->addFriend(findF, true);
+		}
+	}
+	return f;
+}
+
+Pages* Facebook::CreatePageFromFile(ifstream& file)
+{
+	string pName;
+	int numOfStatuses, numOfFans;
+	getline(file, pName);
+	Pages* p = new Pages(pName);
+	file >> numOfStatuses;
+	for (int i = 0; i < numOfStatuses; i++) {
+		p->readStatus(file);
+	}
+	file >> numOfFans;
+	for (int i = 0; i < numOfFans; i++) {
+		string fName, lName;
+		file >> fName >> lName;
+		Friend* findF = findFriend(fName, lName);
+		p->addFan(findF, true);
+	}
+	return p;
+}
+
 void Facebook::leaveFacebook() {
-	// Delete all the allocations + save the data to a file
+	//save the data to a file before allocations are deleted
 	saveData();
 }
 
