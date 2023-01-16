@@ -24,7 +24,7 @@ Date Facebook::addDate()
 	cout << "Day:"; cin >> day;
 	cout << "Month:"; cin >> month;
 	cout << "Year:"; cin >> year;
-	if (day < 1 || day > 31 || month < 1 || month > 12 || year < 1900 || year > 2017)
+	if (day < minDay || day > maxDay || month < minMonth || month > maxMonth || year < minYear || year > maxYear)
 		throw FacebookException(FacebookErrorCode::InvalidDate);
 	Date res(day, month, year);
 	return res;
@@ -129,13 +129,13 @@ void Facebook::preformAction(int actionCode)
 	{
 		switch (actionCode)
 		{
-		case 1:
+		case newUser:
 			addUser();
 			break;
-		case 2:
+		case addFP:
 			addFanPage();
 			break;
-		case 3:
+		case addStatF:
 			cout << "Choose a user" << endl;
 			showMembers();
 			cin >> user;
@@ -147,7 +147,7 @@ void Facebook::preformAction(int actionCode)
 			cin >> choice;
 			friends[user - 1]->addStatus(choice);
 			break;
-		case 4:
+		case addStatP:
 			cout << "Choose a page" << endl;
 			showPages();
 			cin >> page;
@@ -159,28 +159,28 @@ void Facebook::preformAction(int actionCode)
 			cin >> choice;
 			pagesLiked[page - 1]->addStatus(choice);
 			break;
-		case 5:
+		case show10Recent:
 			cout << "Choose a user" << endl;
 			showMembers();
 			cin >> user;
 			checkUsersExist(user);
 			friends[user - 1]->mostUpdatedStatuses();
 			break;
-		case 6:
+		case showPstat:
 			cout << "Choose a page" << endl;
 			showPages();
 			cin >> page;
 			checkPageExist(page);
 			pagesLiked[page - 1]->PrintPagesStatus();
 			break;
-		case 7:
+		case showFstat:
 			cout << "Choose a user" << endl;
 			showMembers();
 			cin >> user;
 			checkUsersExist(user);
 			friends[user - 1]->PrintFriendStatus();
 			break;
-		case 8:
+		case addFriends:
 			cout << "Choose two users to connect - Type both numbers" << endl;
 			showMembers();
 			cin >> user;
@@ -189,7 +189,7 @@ void Facebook::preformAction(int actionCode)
 			checkUsersExist(user);
 			friends[user - 1]->addFriend(friends[secondUser - 1], true);
 			break;
-		case 9:
+		case removeFriend:
 			cout << "Choose two users remove friendship" << endl;
 			showMembers();
 			cin >> user;
@@ -198,7 +198,7 @@ void Facebook::preformAction(int actionCode)
 			checkUsersExist(user);
 			friends[user - 1]->removeFriend(friends[secondUser - 1], true);
 			break;
-		case 10:
+		case likePage:
 			cout << "Choose a page to like" << endl;
 			showPages();
 			cin >> page;
@@ -209,7 +209,7 @@ void Facebook::preformAction(int actionCode)
 			checkUsersExist(user);
 			pagesLiked[page - 1]->addFan(friends[user - 1], true);
 			break;
-		case 11:
+		case UnlikePage:
 			cout << "Choose a page to unlike" << endl;
 			showPages();
 			cin >> page;
@@ -220,27 +220,27 @@ void Facebook::preformAction(int actionCode)
 			checkUsersExist(user);
 			pagesLiked[page - 1]->removeFan(friends[user - 1], true);
 			break;
-		case 12:
+		case showAllEntities:
 			cout << "Users:" << endl;
 			showMembers();
 			cout << "Pages:" << endl;
 			showPages();
 			break;
-		case 13:
+		case showFlist:
 			cout << "Choose a user" << endl;
 			showMembers();
 			cin >> user;
 			checkUsersExist(user);
 			friends[user - 1]->showMyFriends();
 			break;
-		case 14:
+		case showFans:
 			cout << "Choose a page" << endl;
 			showPages();
 			cin >> page;
 			checkPageExist(page);
 			pagesLiked[page - 1]->showMyFans();
 			break;
-		case 15:
+		case leave:
 			leaveFacebook();
 			break;
 		default:
