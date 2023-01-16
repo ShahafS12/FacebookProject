@@ -8,6 +8,7 @@ private:
 public:
     videoStat(string text, string video);
     void showVideo();
+    void printStatus() override;
     ~videoStat();
     string getPath();
 

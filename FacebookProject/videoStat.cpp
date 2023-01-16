@@ -13,3 +13,13 @@ void videoStat::showVideo() {
 string videoStat::getPath() {
 	return fileName;
 }
+
+void videoStat::printStatus()
+{
+    // print the status
+    cout << endl;
+    cout << this->getText() << endl;
+    this->getDate().printDate();
+    this->getTime().printTime();
+    this->showVideo();
+}

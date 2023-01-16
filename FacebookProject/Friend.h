@@ -11,7 +11,6 @@
 #include "friendException.h"
 #include <vector>
 #include <string>
-using namespace std;
 
 const int MAX_STATUS = 300;
 const int MAX_NAME = 15;

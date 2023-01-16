@@ -3,8 +3,6 @@
 #include <string>
 #include "FacebookException.h"
 
-using namespace std;
-
 class Facebook {
 private:
 	vector<Friend*> friends;

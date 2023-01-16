@@ -353,8 +353,6 @@ void Facebook::leaveFacebook() {
 
 	for (int i = 0; i < pagesLiked.size(); i++)
 		delete (pagesLiked[i]);
-
-	exit(1);
 }
 
 Friend* Facebook::findFriend(string fname, string lname)
