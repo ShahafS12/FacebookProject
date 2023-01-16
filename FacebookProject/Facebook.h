@@ -19,6 +19,7 @@ public:
 	Friend* findFriend(string fname, string lname);
 	void saveData();
 	void loadData();
+	~Facebook();
 private:
 	void addDefaultPages();
 	void addDefaultFriends(Pages* p1, Pages* p2, Pages* p3);
@@ -29,5 +30,4 @@ private:
 	void addName(string fname, string lname);
 	void checkUsersExist(int user);
 	void checkPageExist(int page);
-	~Facebook();
 };
