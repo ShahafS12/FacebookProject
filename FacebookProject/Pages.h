@@ -17,9 +17,9 @@ private:
 public:
 	Pages(string _name);
 	void addStatus(int choice);
-	void PrintPagesStatus();
-	void showMyFans();
-	void getPageName();
+	void PrintPagesStatus() const;
+	void showMyFans() const;
+	void getPageName() const;
 	void addFan(Friend* const _friend, bool sender);
 	void removeFan(Friend* const _friend, bool sender);
 	~Pages();
@@ -28,5 +28,5 @@ public:
 	bool operator>(Pages* _page);
 	void readStatus(ifstream& file);
 private:
-	bool isFan(Friend* const _friend);
+	bool isFan(Friend* const _friend) const;
 };

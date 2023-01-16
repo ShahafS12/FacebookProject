@@ -75,7 +75,8 @@ bool Friend::operator>(Friend* _friend) {
 		return false;
 }
 
-const int Friend::getAmountOfFriends() {
+const int Friend::getAmountOfFriends() const
+{
 	return friends.size();
 }
 
@@ -138,35 +139,39 @@ bool Friend::pageLiked(Pages* const _toLike)
 	return false;
 }
 
-void Friend::PrintFriendStatus() {
+void Friend::PrintFriendStatus() const
+{
 	// print the statuses
 	for (int i = statuses.size() - 1; i >= 0; i--)
 		this->statuses[i]->printStatus();
 }
 
-void Friend::getFriendName() {
+void Friend::getFriendName() const
+{
 	// get friend name
 	cout << this->fname << " " << this->lname << endl;
 }
 
-const string Friend::getFName()
+const string Friend::getFName() const
 {
 	return this->fname;
 }
 
-const string Friend::getLName()
+const string Friend::getLName() const
 {
 	return this->lname;
 }
 
-void Friend::showMyFriends() {
+void Friend::showMyFriends() const
+{
 	// Print all my friends
 	for (int i = 0; i < friends.size(); i++) {
 		friends[i]->getFriendName();
 	}
 }
 
-void Friend::mostUpdatedStatuses() {
+void Friend::mostUpdatedStatuses() const
+{
 	// print 10 most updated statuses of all friends
 	int num, x = 10;
 	for (int i = 0; i < friends.size(); i++) {
@@ -176,7 +181,7 @@ void Friend::mostUpdatedStatuses() {
 	}
 }
 
-Date Friend::getDob() 
+Date Friend::getDob() const
 {//returns the date of birth
 	return this->dob;
 }
@@ -211,8 +216,8 @@ void Friend::writeToFileFriend(ofstream& file)
 	file << statuses.size() << " ";
 	for (int i = 0; i < statuses.size(); i++)
 	{
-		file << statuses[i]->getType() << " ";
-		file << statuses[i]->getText() << " ";
+		file << statuses[i]->getType();
+		file << statuses[i]->getText();
 		if (statuses[i]->getType() == statusChoice::Image)
 		{
 			photoStat* p = (photoStat*)statuses[i];

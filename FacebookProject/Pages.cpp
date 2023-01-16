@@ -43,7 +43,8 @@ void Pages::addStatus(int choice) {
 
 }
 
-void Pages::PrintPagesStatus() {
+void Pages::PrintPagesStatus()  const
+{
 	// Print the page statuses
 	int statType;
 	for (int i = 0; i < status.size(); i++)
@@ -52,14 +53,16 @@ void Pages::PrintPagesStatus() {
 	}
 }
 
-void Pages::showMyFans() {
+void Pages::showMyFans() const
+{
 	// print all the fans (Friends)
 	for (int i = 0; i < fans.size(); i++) {
 		fans[i]->getFriendName();
 	}
 }
 
-void Pages::getPageName() {
+void Pages::getPageName() const
+{
 	// get friend name
 	cout << this->name << endl;
 }
@@ -77,7 +80,7 @@ void Pages::addFan(Friend* const _friend, bool sender)
 		throw pagesException(ErrorCodePages::pageAlreadyLike);
 }
 
-bool Pages::isFan(Friend* const _friend)
+bool Pages::isFan(Friend* const _friend) const
 {	// check if the friend is a fan and return boolean
 	for (int i = 0; i < fans.size(); i++)
 	{
