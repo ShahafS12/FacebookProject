@@ -1,7 +1,7 @@
 #include "Status.h"
 using namespace std;
 
-Status::Status(string _text,int _type) : text(_text),type(_type) {}
+Status::Status(string& _text,int _type) : text(_text),type(_type) {}
 
 Status::Status(const Status& cp) {
 	text = cp.text;

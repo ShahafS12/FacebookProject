@@ -27,7 +27,7 @@ private:
 	vector<Friend*> friends;
 	vector<Pages*> likedPages;
 public:
-	Friend(string _fname, string _lname, Date _dob);
+	Friend(string& _fname, string& _lname, Date& _dob);
 	~Friend();
 	void addStatus(int choice);
 	void removeFriend(Friend* _friend, bool remover);
@@ -46,8 +46,9 @@ public:
 	void writeToFileFriend(ofstream& file);
 	void readStatus(ifstream& file);
 	bool operator>(Friend* _friend);
-	const Friend& operator+=(const Friend& other);
-	const Friend& operator+=(const Pages& other);
+	bool operator>(Pages* _page);
+	Friend& operator+=(const Friend& other);
+	Friend& operator+=(const Pages& other);
 private:
 	bool pageLiked(Pages* const _toLike);
 };

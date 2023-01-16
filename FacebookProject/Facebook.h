@@ -9,7 +9,7 @@ private:
 	vector<Pages*> pagesLiked;
 public:
 	Facebook() {};
-	void addDefaultData();
+	//void addDefaultData();
 	void addUser();
 	void addFanPage();
 	void showMembers();
@@ -21,8 +21,8 @@ public:
 	void loadData();
 	~Facebook();
 private:
-	void addDefaultPages();
-	void addDefaultFriends(Pages* p1, Pages* p2, Pages* p3);
+	//void addDefaultPages();
+	//void addDefaultFriends(Pages* p1, Pages* p2, Pages* p3);
 	void preformAction(int actionCode);
 	void printMenu();
 	Date addDate();

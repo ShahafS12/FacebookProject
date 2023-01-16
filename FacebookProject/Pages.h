@@ -15,7 +15,7 @@ private:
 	vector<Friend*> fans;
 	vector<Status*> status;
 public:
-	Pages(string _name);
+	Pages(string& _name);
 	void addStatus(int choice);
 	void PrintPagesStatus() const;
 	void showMyFans() const;

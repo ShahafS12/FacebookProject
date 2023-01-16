@@ -1,6 +1,6 @@
 #include "Pages.h"
 
-Pages::Pages(string _name) : name(_name) {}
+Pages::Pages(string& _name) : name(_name) {}
 
 Pages::~Pages() {
 	// delete constructor
@@ -13,13 +13,13 @@ void Pages::addStatus(int choice) {
 	if (statusChoice::Text < choice && choice > statusChoice::Video)
 		throw StatusException(ErrorCodeStatus::InvalidChoice);
 	cout << "What is your status?" << endl;
-	char text[MAX_STATUS];
+	string text;
 	photoStat* s;
 	videoStat* v;
 	Status* u;
 	string path;
 	cin.ignore();
-	cin.getline(text, MAX_STATUS);
+	getline(cin,text);
 	switch (choice)
 	{
 	case statusChoice::Image:

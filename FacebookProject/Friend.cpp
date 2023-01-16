@@ -2,20 +2,20 @@ using namespace std;
 #include "Friend.h"
 
 	
-Friend::Friend(string _fname, string _lname, Date _dob) : fname(_fname), lname(_lname), dob(_dob) {}
+Friend::Friend(string& _fname, string& _lname, Date& _dob) : fname(_fname), lname(_lname), dob(_dob) {}
 
 void Friend::addStatus(int choice) {
 	// Add status to a user
 	if (statusChoice::Text < choice && choice > statusChoice::Video)
 		throw StatusException(ErrorCodeStatus::InvalidChoice);
 	cout << "What is your status?" << endl;
-	char text[MAX_STATUS];
+	string text;
 	photoStat* s;
 	videoStat* v;
 	Status* u;
 	string path;
 	cin.ignore();
-	cin.getline(text, MAX_STATUS);
+	getline(cin,text);
 	switch (choice)
 	{
 		case statusChoice::Image:
@@ -70,6 +70,14 @@ void Friend::addFriend(Friend* _friend, bool sender)
 
 bool Friend::operator>(Friend* _friend) {
 	if (this->getAmountOfFriends() > _friend->getAmountOfFriends())
+		return true;
+	else
+		return false;
+}
+
+bool Friend::operator>(Pages* _page)
+{
+	if (this->getAmountOfFriends() > _page->getAmountOfFans())
 		return true;
 	else
 		return false;
@@ -186,14 +194,14 @@ Date Friend::getDob() const
 	return this->dob;
 }
 
-const Friend& Friend::operator+=(const Friend& other)
+Friend& Friend::operator+=(const Friend& other)
 {
 	this->addFriend((Friend*)&other,true);
 	return *this;
 }
 
 
-const Friend& Friend::operator+=(const Pages& other)
+Friend& Friend::operator+=(const Pages& other)
 {
 	this->likePage((Pages*)&other,true);
 	return *this;

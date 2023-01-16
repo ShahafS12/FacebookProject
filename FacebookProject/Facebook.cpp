@@ -3,7 +3,7 @@ using namespace std;
 
 void Facebook::addUser()
 {
-	char fname[MAX_NAME], lname[MAX_NAME];
+	string fname,lname;
 	Date d;
 	cout << "Enter first name" << endl;
 	cin >> fname;
@@ -52,10 +52,10 @@ bool Facebook::nameExists(string fname, string lname)
 
 void Facebook::addFanPage() {
 	// Add fan page to pages on facebook
-	char name[MAX_PAGE_NAME];
+	string name;
 	cout << "Enter name of fan page: " << endl;
 	char a = getchar(); // The only way cin working after...
-	cin.getline(name, MAX_PAGE_NAME);
+	getline(cin, name);
 	Pages* p = new Pages(name);
 	pagesLiked.push_back(p);
 }
@@ -247,19 +247,19 @@ void Facebook::preformAction(int actionCode)
 			cout << "invalid action";
 		}
 	}
-	catch (friendException e)
+	catch (friendException& e)
 	{
 		cout << e.what() << endl;
 	}
-	catch (pagesException e)
+	catch (pagesException& e)
 	{
 		cout << e.what() << endl;
 	}
-	catch (FacebookException e)
+	catch (FacebookException& e)
 	{
 		cout << e.what() << endl;
 	}
-	catch (StatusException e)
+	catch (StatusException& e)
 	{
 		cout << e.what() << endl;
 	}

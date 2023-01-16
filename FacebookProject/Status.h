@@ -17,7 +17,7 @@ private:
 	int type=1;
 public:
 	Status() = default;
-	Status(string text,int _type=1);
+	Status(string& text,int _type=1);
 	Status(const Status& cp);
 	virtual ~Status();
 	int getType() const;
