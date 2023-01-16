@@ -9,6 +9,7 @@ public:
 	short int getDay();
 	short int getMonth();
 	short int getYear();
+	Date getDate();
 	void printDate();
 };
 

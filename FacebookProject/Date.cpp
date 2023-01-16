@@ -28,3 +28,8 @@ short int Date::getMonth() {
 short int Date::getYear() {
 	return year;
 }
+
+Date Date::getDate()
+{
+	return *this;
+}

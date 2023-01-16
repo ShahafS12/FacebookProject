@@ -13,6 +13,11 @@ Time::Time() {
     minute = now->tm_min;
 }
 
+Time Time::getTime()
+{
+    return *this;
+}
+
 void Time::printTime() {
     // print the time
     cout << hour << ":" << minute << endl;

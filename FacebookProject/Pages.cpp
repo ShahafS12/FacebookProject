@@ -13,12 +13,13 @@ void Pages::addStatus(int choice) {
 	if (statusChoice::Text < choice && choice > statusChoice::Video)
 		throw StatusException(ErrorCodeStatus::InvalidChoice);
 	cout << "What is your status?" << endl;
-	string text;
-	cin >> text;
+	char text[MAX_STATUS];
 	photoStat* s;
 	videoStat* v;
 	Status* u;
 	string path;
+	cin.ignore();
+	cin.getline(text, MAX_STATUS);
 	switch (choice)
 	{
 	case statusChoice::Image:
@@ -44,8 +45,11 @@ void Pages::addStatus(int choice) {
 
 void Pages::PrintPagesStatus() {
 	// Print the page statuses
+	int statType;
 	for (int i = 0; i < status.size(); i++)
-		this->status[i]->printStatus();
+	{
+		status[i]->printStatus();
+	}
 }
 
 void Pages::showMyFans() {
@@ -116,11 +120,11 @@ void Pages::writeToFilePages(ofstream& file) {
 	// write to file
 	file << this->name << " ";
 	file << endl;
-	file << this->status.size() << " ";
+	file << this->status.size() << " " << endl;
 	for (int i = 0; i < this->status.size(); i++)
 	{
 		file << this->status[i]->getType() << " ";
-		file << this->status[i]->getText() << " ";
+		file << this->status[i]->getText() << " " << endl;
 		if (this->status[i]->getType() == statusChoice::Image)
 		{
 			photoStat* p = (photoStat*)status[i];

@@ -7,4 +7,5 @@ private:
 public:
 	Time();
 	void printTime();
+	Time getTime();
 };

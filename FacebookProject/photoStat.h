@@ -9,6 +9,7 @@ private:
 public:
     photoStat(string text, string pic);
     void showPicture();
+	void printStatus() override;
     ~photoStat();
 	string getPath();
 };

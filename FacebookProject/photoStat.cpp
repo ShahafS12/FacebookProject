@@ -10,6 +10,16 @@ void photoStat::showPicture() {
 	system(("start " + fileName).c_str());
 }
 
+void photoStat::printStatus()
+{
+    // print the status
+    cout << endl;
+    cout << this->getText() << endl;
+    this->getDate().printDate();
+    this->getTime().printTime();
+    this->showPicture();
+}
+
 string photoStat::getPath() {
 	return fileName;
 }

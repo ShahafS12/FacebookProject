@@ -12,12 +12,22 @@ Status::Status(const Status& cp) {
 Status::~Status() {}
 
 
-void Status::printStatus() {
+void Status::printStatus() 
+{
 	// print the status
 	cout << endl;
 	cout << text << endl;
 	this->date.printDate();
 	this->time.printTime();
+}
+
+Date Status::getDate() const
+{
+	return date;
+}
+Time Status::getTime() const
+{
+	return time;
 }
 
 bool Status::operator==(string _text) {

@@ -278,7 +278,7 @@ void Facebook::saveData()
 	}
 	// Write the number of pages to the file
 	int numPages = pagesLiked.size();
-	outFile << numPages;
+	outFile << numPages << endl;
 	for (auto _pages : pagesLiked)
 	{
 		_pages->writeToFilePages(outFile);
@@ -293,9 +293,9 @@ void Facebook::loadData() {
 	{
 		throw FacebookException(FacebookErrorCode::ErrorOpeningFile);
 	}
-	int numFriends, numPages;
-	inFile >> numFriends;
-	for (int i = 0; i < numFriends; i++)
+	int numUsers, numPages;
+	inFile >> numUsers;
+	for (int i = 0; i < numUsers; i++)
 	{
 		string fName, lName;
 		int month, day, year, numOfStatueses, numOfFriends, numOfFans;
@@ -319,8 +319,9 @@ void Facebook::loadData() {
 		}
 	}
 	inFile >> numPages;
+	string pName, x; // x is for jumping a line in the file
+	getline(inFile, x);
 	for (int i = 0; i < numPages; i++) {
-		string pName, x; // x is for jumping a line in the file
 		getline(inFile, pName);
 		Pages* p = new Pages(pName);
 		pagesLiked.push_back(p);
@@ -329,9 +330,11 @@ void Facebook::loadData() {
 		for (int i = 0; i < numOfStatuses; i++) {
 			p->readStatus(inFile);
 		}
+		//cin.ignore();
+		//getline(inFile, x);
 		int numOfFans;
 		inFile >> numOfFans;
-		for (int i = 0; i < numOfFans; i++) {
+ 		for (int i = 0; i < numOfFans; i++) {
 			string fName, lName;
 			inFile >> fName >> lName;
 			Friend* findF = findFriend(fName, lName);
