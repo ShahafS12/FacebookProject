@@ -29,4 +29,5 @@ private:
 	void addName(string fname, string lname);
 	void checkUsersExist(int user);
 	void checkPageExist(int page);
+	~Facebook();
 };

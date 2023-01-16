@@ -347,9 +347,12 @@ void Facebook::loadData() {
 void Facebook::leaveFacebook() {
 	// Delete all the allocations + save the data to a file
 	saveData();
-	
+}
+
+Facebook::~Facebook()
+{
 	for (int i = 0; i < friends.size(); i++)
-			delete (friends[i]);
+		delete (friends[i]);
 
 	for (int i = 0; i < pagesLiked.size(); i++)
 		delete (pagesLiked[i]);
