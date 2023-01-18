@@ -11,5 +11,6 @@ public:
 	short int getYear();
 	Date getDate();
 	void printDate();
+	const Date& operator=(const Date& other);
 };
 

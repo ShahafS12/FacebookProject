@@ -4,6 +4,28 @@ using namespace std;
 	
 Friend::Friend(string& _fname, string& _lname, Date& _dob) : fname(_fname), lname(_lname), dob(_dob) {}
 
+
+Friend::Friend(const Friend& other) {
+	// copy ctor
+	*this = other;
+}
+
+const Friend& Friend::operator=(const Friend& other) {
+	// operator = 
+	if (this != &other)
+	{
+		fname = other.fname;
+		lname = other.lname;
+		dob = other.dob;
+		friends.assign(other.friends.begin(), other.friends.end());
+		statuses.assign(other.statuses.begin(), other.statuses.end());
+		likedPages.assign(other.likedPages.begin(), other.likedPages.end());
+
+	}
+	return *this;
+}
+
+
 void Friend::addStatus(int choice) {
 	// Add status to a user
 	if (statusChoice::Text < choice && choice > statusChoice::Video)
@@ -39,19 +61,6 @@ void Friend::addStatus(int choice) {
 
 }
 
-void Friend::addTwoDefaultStatus()
-{  // add the default statuses
-	string text1;
-	text1 = fname;
-	text1 += "'s first status";
-	Status* s1 = new Status(text1);
-	statuses.push_back(s1);
-	string text2;
-	text2 = fname;
-	text2 += "'s second status";
-	Status* s2 = new Status(text2);
-	statuses.push_back(s2);
-}
 
 void Friend::addFriend(Friend* _friend, bool sender)
 {// connects between two users after checking they werent friends before

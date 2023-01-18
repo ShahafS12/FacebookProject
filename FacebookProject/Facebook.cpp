@@ -1,6 +1,21 @@
 #include "Facebook.h"
 using namespace std;
 
+Facebook::Facebook(const Facebook& other) {
+	// copy ctor
+	*this = other;
+}
+
+const Facebook& Facebook::operator=(const Facebook& other) {
+	// operator = 
+	if (this != &other)
+	{
+		friends.assign(other.friends.begin(), other.friends.end());
+		pagesLiked.assign(other.pagesLiked.begin(), other.pagesLiked.end());
+	}
+	return *this;
+}
+
 void Facebook::addUser()
 {
 	string fname,lname;

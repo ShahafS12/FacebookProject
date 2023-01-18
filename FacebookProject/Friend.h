@@ -28,12 +28,12 @@ private:
 	vector<Pages*> likedPages;
 public:
 	Friend(string& _fname, string& _lname, Date& _dob);
+	Friend(const Friend& other);
 	~Friend();
 	void addStatus(int choice);
 	void removeFriend(Friend* _friend, bool remover);
 	void addFriend(Friend* _friend, bool sender);
 	void PrintFriendStatus() const;
-	void addTwoDefaultStatus();
 	void getFriendName() const;
 	void showMyFriends() const;
 	void mostUpdatedStatuses() const;
@@ -49,6 +49,7 @@ public:
 	bool operator>(Pages* _page);
 	Friend& operator+=(const Friend& other);
 	Friend& operator+=(const Pages& other);
+	const Friend& operator=(const Friend& other);
 private:
 	bool pageLiked(Pages* const _toLike);
 };

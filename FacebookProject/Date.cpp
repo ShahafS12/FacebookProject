@@ -33,3 +33,14 @@ Date Date::getDate()
 {
 	return *this;
 }
+
+const Date& Date::operator=(const Date& other) {
+	// operator = 
+	if (this != &other)
+	{
+		day = other.day;
+		month = other.month;
+		year = other.year;
+	}
+	return *this;
+}

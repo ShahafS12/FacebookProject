@@ -1,11 +1,27 @@
 #include "Pages.h"
 
-Pages::Pages(string& _name) : name(_name) {}
+Pages::Pages(string _name) : name(_name) {}
+
+Pages::Pages(const Pages& other) {
+	// copy ctor
+	*this = other;
+}
 
 Pages::~Pages() {
 	// delete constructor
 	for (int i = 0; i < status.size(); i++)
 		delete (status[i]);
+}
+
+const Pages& Pages::operator=(const Pages& other)
+{// operator = 
+	if (this != &other)
+	{
+		name = other.name;
+		fans.assign(other.fans.begin(), other.fans.end());
+		status.assign(other.status.begin(), other.status.end());
+	}
+	return *this;
 }
 
 void Pages::addStatus(int choice) {
