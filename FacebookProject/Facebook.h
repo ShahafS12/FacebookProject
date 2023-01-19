@@ -3,7 +3,7 @@
 #include <string>
 #include "FacebookException.h"
 
-enum menuActions { newUser = 1, addFP, addStatF, addStatP, show10Recent, showPstat, showFstat, addFriends, removeFriend, likePage, UnlikePage, showAllEntities, showFlist, showFans, leave };
+enum menuActions { newUser = 1, addFP, addStatF, addStatP, show10Recent, showPstat, showFstat, addFriends, removeFriend, likePage, UnlikePage, showAllEntities, showFlist, showFans, showPagesOfUser,leave };
 enum dateCap { minDay = 1, maxDay = 31, minMonth = 1, maxMonth = 12, minYear = 1900, maxYear = 2017 };
 
 class Facebook {
@@ -20,6 +20,7 @@ public:
 	void menu();
 	void leaveFacebook();
 	Friend* findFriend(string fname, string lname);
+	void showPagesOf(int user);
 	void saveData();
 	void loadData();
 	~Facebook();

@@ -45,6 +45,7 @@ public:
 	Date getDob() const;
 	void writeToFileFriend(ofstream& file);
 	void readStatus(ifstream& file);
+	void showPagesLiked();
 	bool operator>(Friend* _friend);
 	bool operator>(Pages* _page);
 	Friend& operator+=(const Friend& other);

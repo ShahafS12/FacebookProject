@@ -99,7 +99,7 @@ void Facebook::menu()
 	cin >> action;
 	preformAction(action);
 	cout << "\n" << endl;
-	if (action != 15) //15 means exit
+	if (action != 16) //15 means exit
 		menu();
 }
 
@@ -120,7 +120,8 @@ void Facebook::printMenu()
 	cout << "12-show all users and pages" << endl;
 	cout << "13-show a friend's friend list" << endl;
 	cout << "14-show fans of a page" << endl;
-	cout << "15-exit\n" << endl;
+	cout << "15-show pages of user liked" << endl;
+	cout << "16-exit\n" << endl;
 }
 
 void Facebook::checkUsersExist(int user)
@@ -254,6 +255,12 @@ void Facebook::preformAction(int actionCode)
 			cin >> page;
 			checkPageExist(page);
 			pagesLiked[page - 1]->showMyFans();
+			break;
+		case showPagesOfUser:
+			cout << "Choose a user" << endl;
+			showMembers();
+			cin >> user;
+			showPagesOf(user - 1);
 			break;
 		case leave:
 			leaveFacebook();
@@ -391,4 +398,10 @@ Friend* Facebook::findFriend(string fname, string lname)
 			return (friends[i]);
 	}
 	return nullptr;
+}
+
+void Facebook::showPagesOf(int user) {
+	// show the pages that a friend liked
+	checkUsersExist(user);
+	friends[user]->showPagesLiked();
 }

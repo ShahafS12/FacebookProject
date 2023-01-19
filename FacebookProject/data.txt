@@ -9,22 +9,27 @@ Justin Bieber 4 1 1985 2 1  Justin's first status
 1  Justin's second status             
 1 Tomer Klein 
 selena gomez 8 19 1996 0 0 
-4
-Justin to israel                
+5
+Justin to israel                  
 1 
 2              a              
-C:\Users\User\Downloads\6bf2e33a-55ce-4757-bffa-c3a99055a355.jpg              
+./memories.jpg                
 2 Shahaf Shabo Justin Bieber 
-Hapshuta                
+Hapshuta                  
 0 
 1 Shahaf Shabo 
-Lemons cummunity                
+Lemons cummunity                  
 2 
 3         etics and sentence recording :DDDD             
-"C:\Users\User\Videos\Captures\Zoom Meeting 2022-09-18 10-47-09.mp4"             
+./video2.mp4              
 3         etics zoom 2nd try :DDDDDDDDDDDDDD            
-C:\Users\User\Videos\Captures\zoomEtics.mp4            
+./video1.mp4              
 1 Tomer Klein 
-selena club eilat 
+selena club eilat   
 0 
+0 
+MTA 
+1 
+3HOLLA
+./video2.mp4 
 0 

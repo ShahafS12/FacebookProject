@@ -142,8 +142,8 @@ void Pages::writeToFilePages(ofstream& file) {
 	file << this->status.size() << " " << endl;
 	for (int i = 0; i < this->status.size(); i++)
 	{
-		file << this->status[i]->getType() << " ";
-		file << this->status[i]->getText() << " " << endl;
+		file << this->status[i]->getType();
+		file << this->status[i]->getText()<< endl;
 		if (this->status[i]->getType() == statusChoice::Image)
 		{
 			photoStat* p = (photoStat*)status[i];

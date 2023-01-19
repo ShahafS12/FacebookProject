@@ -281,3 +281,9 @@ void Friend::readStatus(ifstream& file) {
 		statuses.push_back(s);
 	}
 }
+
+void Friend::showPagesLiked() {
+	// show the pages the user liked
+	for (int i = 0; i < likedPages.size(); i++)
+		likedPages[i]->getPageName() ;
+}
